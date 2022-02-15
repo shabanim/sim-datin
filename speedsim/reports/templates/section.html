@@ -1,0 +1,16 @@
+{#
+  Expected context:
+  data - report.Section object
+#}
+
+{% block section %}
+    {% if data.level > 6 %}
+        {% set level = 6 %}
+    {% else %}
+        {% set level = data.level %}
+    {% endif %}
+    <h{{level}} id="{{data.tag}}">{{data.title}}</h{{level}}>
+    {% for c in data.content %}
+        {{render(c)}}
+    {% endfor %}
+{% endblock %}

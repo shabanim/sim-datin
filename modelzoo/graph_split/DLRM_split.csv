@@ -1,0 +1,4 @@
+Name,type,pass,comms_type,pass_2,pick,msize
+Infrequent_embedding,EmbeddingBag,fwd,a2a,FWD,NA,0.114695341
+bwd_d_00002_infrequent_embedding_concat,Concat,bwd-d,a2a,INP_GRAD,a2a_output_grad,1
+bwd_w_00001_Infrequent_embedding,GradientEmbeddingBag,bwd-w,0,WT_GRAD,NA,1

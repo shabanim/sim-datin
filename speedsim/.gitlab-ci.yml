@@ -1,0 +1,49 @@
+image: alpine:latest
+
+stages:
+  - lint
+  - test
+  - deploy
+
+
+before_script:
+  - git submodule sync --recursive
+  - git submodule update --init --recursive
+  
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+
+isort-check:
+  stage: lint
+  script: make isort-check
+
+
+flake8:
+  stage: lint
+  script: make flake8
+
+
+pages:
+  stage: deploy
+  script:
+  - curr=`pwd`
+  - export PYTHONPATH="/p/dpg/arch/perfhome/pyconduit/latest:$curr:$PYTHONPATH"
+  - export PATH="/p/dpg/arch/perfhome/python/miniconda3/bin/:$PATH"
+  - cd doc
+  - make html
+  - cd ..
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+
+test:
+  stage: test
+  script:
+  - ./run_regression.py
+  artifacts:
+    when: always
+  only:
+  - master

@@ -1,0 +1,136 @@
+# Parameters for comms model
+Collective:
+  scale_up_collectiveAlgo: {nw_topology: p2p}
+
+  scale_out_collectiveAlgo: {nw_topology: flat, collective_algo: allreduce, collective_method: rabenseifner}
+
+Comms:
+    # -----------
+    #Software
+    # -----------
+  software: {lat_us: 7, th_dispatch: 200}
+
+    # -----------
+    # Scaleup
+    # -----------
+  scaleup: {option: SWITCH, link_eff: 0.9, cc_msg: 1, local_write: 0, jitter: 0, link_lat_ns: 2,
+    switch_lat_ns: 200, grp_sockets: 8, packet_resp: 48, msg_header: 48, packet_size: 256,
+    tiles_comm_a2a: 32}
+    #------------
+    # su_BW_per_link_ACHIEVABLE overwrite
+    #------------
+  su_BW_per_link_ACHIEVABLE_overwrite: true
+  su_BW_per_link_ACHIEVABLE_value: 32.5     #in GB/s
+
+    #------------
+    # so_BW_per_link_ACHIEVABLE overwrite
+    #------------
+  so_BW_per_link_ACHIEVABLE_overwrite: true
+  so_BW_per_link_ACHIEVABLE_value: 19.35   #in GB/s
+    # -----------
+    # CPU comms
+    # -----------
+  cpu_gpu_tile__pcie_BW_GBps: 25.6
+  cpu_socket_NVME_pcie_BW_GBps: 51.2
+  cpu_socket_per_node: 2
+  cpu_nics: 2
+  cpu_nic_bw_unidir_gbps: 12.5
+  cpu_nic_eff: 0.5
+
+  num_iterations: 1
+
+
+    # -----------
+    # Scale out
+    # -----------
+  scale_out: {enabled: true, latency: 2, host_involvement: 3, jitter: 0, nics: 8,
+    nic_bw_unidir_gbps: 400, nic_eff: 0.9, tiers_fat_tree: 2, switches_t1: 8, switches_t2: 4,
+    hosts_t1: 8, ports_switch: 800, ports_t1: 128, ports_t2: 64, type: cafe, cafe_lat: 2.08,
+    cafe_links: 16, cafe_link_bw_gbps: 35, pcie_bw_rw_gbps: 64, hw_type: 1, data_parallel_with_model_split: 0,
+    switch_lat_us: 2, overlap_scaleup: false # overlap scaleout tasks with scaleup
+}
+
+    # -----------
+    # buffer
+    # -----------
+  use_buffer: true
+  buffer_size: 801457280
+
+    # -----------
+    # MP/DP/HYBRID
+    # -----------
+  data_parallel: false
+  hybrid_model: true
+  model_split: 512
+  Enable_ZeRO: false
+  ZeRO_type: 2          #"Zinf" #Todo :change to names [type_1, type_2, type_3]
+  Zero-inf: false
+  graph_split_csv: ./modelzoo/graph_split/GNN_split.csv
+
+    # -----------
+    # Zero inf
+    # -----------    
+  opt_name: adam
+
+    # -----------
+    # Others
+    # -----------
+  chunks: 10             # number of chunks
+  pipeline: true         # Pipeline enabled
+  outFilePath: ./modelzoo/
+  max_overlap: 1
+  fwd_2x: false
+
+  DLRM: false
+Device:
+
+    # -----------
+    # Caching Spec
+    # -----------
+  L3_read_cache_miss_for_data_from_remote_write: 500
+  L3_read_cache_miss_on_sync_flag: 400
+  L3_write_cache_hit_on_data: 150
+  L3_write_cache_hit_on_sync_flag: 150
+  L1_hit_per_cache_line: 60
+  L3_read_congestion_factor: 1
+  L3_write_congestion_factor: 1
+
+    # -----------
+    # Memory Spec
+    # -----------
+  g_memory_reads: 64
+  peak_read_memBW: 1600
+  peak_write_memBW: 1600
+  read_memory_efficiency: 0.8
+  write_memory_efficiency: 0.8
+  g_memory_writes: 32
+  memory_read_congestion_factor: 1
+  memory_write_congestion_factor: 1
+  use_full_message_size_in_HBM_latency_calculation: false
+
+    # -----------
+    # MDFI
+    # -----------
+  mdfi_link_latency: 45
+  mdfi_BW_per_tile_ACHIEVABLE: 450
+  total_mdfi_BW: 600
+  use_chunk_size_in_MDFI_latency_calculation: false
+
+    # -----------
+    # Compute
+    # -----------
+  frequency_in_Ghz: 1.4
+  dss_or_sms: 16
+  links: 8
+  links_scaleout: 6
+  serdes_lane: 4                # Serializer/Deserializer lanes
+  serdes_rate_gbps: 90
+  cd_latency_ns: 100
+  batch_size: 16
+
+    # -----------
+    # GPU
+    # -----------
+  num_tiles_per_pvc: 2
+  num_pvc: 256
+  num_PVC_per_host: 8

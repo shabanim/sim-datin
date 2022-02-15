@@ -1,0 +1,193 @@
+{
+    "Model": {
+        "Name": "BERT_enc_s512_lay24_c13_h16.py"
+    },
+    "System": {
+        "Name": "T128.0_MP16_DP8.0",
+        "MP": 16,
+        "DP": 8.0,
+        "nCPU": 128.0,
+        "nNodes": 8,
+        "nTilesNode": 16.0
+    },
+    "Layers": [
+		{
+            "Pass": "BWD",
+            "LayerNum": 1,
+            "LayerName": "layer1",
+            "Dependency": null,
+            "FreqGHz": 1.5,
+            "Weights": 8388608.0,
+            "WeightsBytes": 1048576.0,
+            "Input": 8388608.0,
+            "InputBytes": 16777216.0,
+            "Output": 8192.0,
+            "OutputBytes": 16384.0,
+            "CommCycles": 3710679.8509501703,
+            "MsgSize": 1048576.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+		{
+            "Pass": "BWD",
+            "LayerNum": 2,
+            "LayerName": "layer2",
+            "Dependency": [
+				layer1
+			],
+            "FreqGHz": 1.5,
+            "Weights": 8388608.0,
+            "WeightsBytes": 2097152.0,
+            "Input": 8388608.0,
+            "InputBytes": 16777216.0,
+            "Output": 8192.0,
+            "OutputBytes": 16384.0,
+            "CommCycles": 3710679.8509501703,
+            "MsgSize": 2097152.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+		{
+            "Pass": "BWD",
+            "LayerNum": 3,
+            "LayerName": "layer3",
+            "Dependency": [
+				layer2
+			],
+            "FreqGHz": 1.5,
+            "Weights": 8388608.0,
+            "WeightsBytes": 3145728.0,
+            "Input": 8388608.0,
+            "InputBytes": 16777216.0,
+            "Output": 8192.0,
+            "OutputBytes": 16384.0,
+            "CommCycles": 3710679.8509501703,
+            "MsgSize": 3145728.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+		{
+            "Pass": "BWD",
+            "LayerNum": 4,
+            "LayerName": "layer4",
+            "Dependency": [
+				layer3
+			],
+            "FreqGHz": 1.5,
+            "Weights": 8388608.0,
+            "WeightsBytes": 5242880.0,
+            "Input": 8388608.0,
+            "InputBytes": 16777216.0,
+            "Output": 8192.0,
+            "OutputBytes": 16384.0,
+            "CommCycles": 3710679.8509501703,
+            "MsgSize": 5242880.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+		{
+            "Pass": "BWD",
+            "LayerNum": 5,
+            "LayerName": "layer5",
+            "Dependency": [
+				layer4
+			],
+            "FreqGHz": 1.5,
+            "Weights": 8388608.0,
+            "WeightsBytes": 20971520.0,
+            "Input": 8388608.0,
+            "InputBytes": 16777216.0,
+            "Output": 8192.0,
+            "OutputBytes": 16384.0,
+            "CommCycles": 3710679.8509501703,
+            "MsgSize": 20971520.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+		{
+            "Pass": "BWD",
+            "LayerNum": 6,
+            "LayerName": "layer6",
+            "Dependency": [
+				layer5
+			],
+            "FreqGHz": 1.5,
+            "Weights": 8388608.0,
+            "WeightsBytes": 41943040.0,
+            "Input": 8388608.0,
+            "InputBytes": 16777216.0,
+            "Output": 8192.0,
+            "OutputBytes": 16384.0,
+            "CommCycles": 3710679.8509501703,
+            "MsgSize": 41943040.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+		{
+            "Pass": "BWD",
+            "LayerNum": 7,
+            "LayerName": "layer7",
+            "Dependency": [
+				layer6
+			],
+            "FreqGHz": 1.5,
+            "Weights": 8388608.0,
+            "WeightsBytes": 62914560.0,
+            "Input": 8388608.0,
+            "InputBytes": 16777216.0,
+            "Output": 8192.0,
+            "OutputBytes": 16384.0,
+            "CommCycles": 3710679.8509501703,
+            "MsgSize": 62914560.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+		{
+            "Pass": "BWD",
+            "LayerNum": 8,
+            "LayerName": "layer8",
+            "Dependency": [
+				layer7
+			],
+            "FreqGHz": 1.5,
+            "Weights": 8388608.0,
+            "WeightsBytes": 83886080.0,
+            "Input": 8388608.0,
+            "InputBytes": 16777216.0,
+            "Output": 8192.0,
+            "OutputBytes": 16384.0,
+            "CommCycles": 3710679.8509501703,
+            "MsgSize": 83886080.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+		{
+            "Pass": "BWD",
+            "LayerNum": 9,
+            "LayerName": "layer9",
+            "Dependency": [
+				layer8
+			],
+            "FreqGHz": 1.5,
+            "Weights": 8388608.0,
+            "WeightsBytes": 104857600.0,
+            "Input": 8388608.0,
+            "InputBytes": 16777216.0,
+            "Output": 8192.0,
+            "OutputBytes": 16384.0,
+            "CommCycles": 3710679.8509501703,
+            "MsgSize": 104857600.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        }	       
+    ]
+}

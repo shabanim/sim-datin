@@ -1,0 +1,1937 @@
++-----------------------------------------------------------------------------+
+| Logfile        : run_simulation.log                                         |
+| Job id         : 18264084                   Class: SLES11SP4&&2G Qslot: /fdo/priority|
+| Executed on    : scc064002                  Pool : sc_linux7_pp             |
+| Queueing time  : Fri Dec 11 04:34:21 2020                                   |
+| Starting time  : Fri Dec 11 04:34:23 2020          Qwait:   0h:00m:02s      |
+| Command        : run_simulation.sh                                          |
++-----------------------------------------------------------------------------+
+%I - Begin Simulation
+HELLO WORLD FROM MAIN RANK: 0 of 1 on processor: scc064002
+CFG::Parsing JSON File: general.json
+adding line: {
+adding line:     "general":
+adding line:     {
+adding line:         "cfg_path": "cfg.json",
+adding line:         "global_job_time_offset": "0ns",
+adding line: 
+adding line:         "mem_usage_debug": 0, 
+adding line:         "mem_usage_check_interval" : "500 ns", 
+adding line: 
+adding line:         "debug_dump_topology_csv" : false, 
+adding line: 
+adding line:         "mpi_debug_enable" : 0, 
+adding line: 
+adding line:         "mpi_bridge_fast_forward": 1, 
+adding line:         "g_debuglevel" : 0, 
+adding line: 
+adding line:         "g_debugcycle" : 0, 
+adding line: 
+adding line:         "g_debugcycle_end" : 0, 
+adding line: 
+adding line:         "g_debug_compress_logs" : true, 
+adding line: 
+adding line:         "termination_debug" : 0, 
+adding line: 
+adding line:         
+adding line:         "terminate_after_no_outstanding_msgs" : 0, 
+adding line: 
+adding line:         "deadlock_check_enable" : 0,
+adding line:         "deadlock_check_period" : "10000 ns",
+adding line: 
+adding line:         "schedule_events_based_on_bytes" : 1,
+adding line: 
+adding line:         
+adding line:         
+adding line:         
+adding line:         "work_limited_termination":  1,
+adding line: 
+adding line:         
+adding line:         "termination_check_period": "1000 ns",
+adding line: 
+adding line:         
+adding line:         "no_network": 0,
+adding line: 
+adding line:         
+adding line:         "link_block_transfer_mode" : 0, 
+adding line:         "super_block_cycle_sync" : "40 ns", 
+adding line: 
+adding line:         "distributed_sim_mode" : 0,
+adding line:         "distributed_sim_node_only_ranks" : 0,
+adding line: 
+adding line:         
+adding line:         "use_max_runtime": false,
+adding line:         "max_runtime": "10000 ns",
+adding line: 
+adding line:         
+adding line:         
+adding line:         "use_heartbeat": true,
+adding line:         "heartbeat_period": "1 ms",
+adding line: 
+adding line:         
+adding line:         
+adding line:         "enable_event_queue_exec_stats": false,
+adding line:         "enable_event_queue_time_stats": false,
+adding line:         "reset_stats_on_print": false,
+adding line: 
+adding line:         
+adding line:         "seed": 1234,
+adding line: 
+adding line:         
+adding line:         
+adding line:         "max_packets": 0,
+adding line:         "max_flits": 0,
+adding line:         "max_lbs": 0,
+adding line: 
+adding line:         "remote_client_port_num": 55056
+adding line:     },
+adding line: 
+adding line:     "elastic_logger":
+adding line:     {
+adding line:         "log_to_elastic": false,
+adding line:         "log_to_file": false,
+adding line:         "elastic_host": "scci56232.sc.intel.com",
+adding line:         "elastic_port": 5601,
+adding line:         "elastic_index": "defaultIndexName",
+adding line:         "simulation_name": "simulationName",
+adding line:         "delete_old_simulation": true,
+adding line:         "log_tick_start": 0,
+adding line:         "log_tick_end": -1,
+adding line:         "log_stats_default": "all",
+adding line:         "log_stats_enable": "",
+adding line:         "log_stats_disable": ""
+adding line:     }
+adding line: }
+adding line: 
+CFG::Parsing JSON File: clock_domains.json
+adding line: {
+adding line:     
+adding line:     
+adding line:     "fabsim-x":
+adding line:     {
+adding line:         "clock_domains":
+adding line:         [
+adding line:             {
+adding line:                 "name": "router",                   
+adding line:                 "period": "2 ns"
+adding line:             },
+adding line:             {
+adding line:                 "name": "node",                     
+adding line:                 "period": "2 ns"
+adding line:             },
+adding line:             {
+adding line:                 "name": "link",                     
+adding line:                 "period": "2 ns"
+adding line:             },
+adding line:             {
+adding line:                 "name": "r2r_link",                 
+adding line:                 "period": "2 ns"
+adding line:             }
+adding line:         ]
+adding line:     }
+adding line: }
+CFG::Parsing JSON File: topology.json
+adding line: {
+adding line:     "topology":
+adding line:     [
+adding line:         {
+adding line: 
+adding line: 
+adding line:             "type"  : "tree",
+adding line: 
+adding line:             "deadlock_threshold":                   1000000,
+adding line:             "switch_radix":                         64,
+adding line:             "node_count":                           128,
+adding line:             "rank_count":                           2,
+adding line: 
+adding line:             
+adding line:             "switch_down_edge_weights_per_rank":    [1, 16],
+adding line:             "switch_down_edges_per_rank":           [32, 4],
+adding line:             "switch_up_edges_per_rank":             [2, 0],
+adding line:             "switch_down_link_htts_per_rank":       ["100 ns", "100 ns"],
+adding line:             
+adding line:             "topology_mode":                        0,  
+adding line:             "connectivity_mode":                    0,  
+adding line:             
+adding line:             "root_rank_tree_count_factor_per_rank": {}, 
+adding line: 
+adding line:             "num_leaf_switches_in_dcs":             64, 
+adding line:             "num_links_between_two_adjcent_tier_switches_per_rank": {}, 
+adding line:   
+adding line:             "include":                              "empty_include.json",    
+adding line:  
+adding line:             
+adding line:             "balance":                              1,
+adding line:             "rebalance":                            1,
+adding line:             "dm_map":                               0,
+adding line:             "print_topology":                       0,
+adding line:             "shuffle_uplinks":                      0
+adding line:         }
+adding line:     ]
+adding line: }
+CFG::Parsing JSON File: tree_routing.json
+adding line: 
+adding line: {
+adding line: 
+adding line:     "routing":
+adding line:     [
+adding line:         {
+adding line: 
+adding line:             "type"  : "tree",
+adding line: 
+adding line:             "minimal_random_subset_sizes":          [2],           
+adding line:             "nonminimal_random_subset_sizes":       [2],        
+adding line:             "minimal_input_pruned_subset_sizes":    [2],     
+adding line:                                                                                             
+adding line:             "nonminimal_input_pruned_subset_sizes": [2],  
+adding line:                                                                                             
+adding line:             "total_input_pruned_subset_sizes":      [4],       
+adding line:                                                                                             
+adding line: 
+adding line:             "force_nonminimal":                     0,      
+adding line:             "default_bias_to_minimal_num":          2,   
+adding line:             "default_bias_to_minimal_den":          1,   
+adding line:             "nonminimal_offset":                    256,     
+adding line:             "prune_opposite":                       0,        
+adding line: 
+adding line:             "route_mode":                           0,            
+adding line:             "offered_diversity":                    1,     
+adding line: 
+adding line:             "use_hashes":                           1,            
+adding line:             
+adding line:             "deterministic_routing_uplink_select_mode": 1, 	
+adding line:             "deterministic_routing_downlink_select_mode": 1, 	
+adding line:             
+adding line:             "route_table_config_mode":              0,						
+adding line:             "adaptive_routing_uplink_select_mode":  0, 			
+adding line:             "max_num_avail_candidates":             64, 						
+adding line:             "max_num_avail_candidates_prime":       0, 				 
+adding line:             "adaptive_routing_downlink_select_mode":0, 		
+adding line:             "max_num_avail_downlink_candidates":    64, 		    
+adding line:         
+adding line:             "flowlet_timeout":                      "0 ns",                             
+adding line:             "shared_flowlet_table":                 false,                          
+adding line:             "flowlet_table_size":                   0,                            
+adding line:             "flowlet_table_group_size_uplink":      0,               
+adding line:             "flowlet_table_group_size_downlink":    0,             
+adding line:             "flowlet_table_hash_mode":              0,                       
+adding line:             
+adding line:             "unique_flows_tracking_interval":       0,                
+adding line:             
+adding line:             "congestion_indicator":                 "queue_length",
+adding line:             "local_congestion_weight":              1,
+adding line:             "remote_congestion_weight":             0,          
+adding line:             "port_usage_counting_reset_period":     0,
+adding line:             "port_usage_pct_congestion_thold":      100,
+adding line:             "port_usage_sliding_window_size":       1
+adding line:         }
+adding line:     ]
+adding line: }
+CFG::Parsing JSON File: hashing.json
+adding line: 
+adding line: 
+adding line: 
+adding line: {
+adding line:     "hashing":
+adding line:     [
+adding line:         {
+adding line:             "hashing_type": "random",        
+adding line:                                                     
+adding line:             "use_lazy_rotate": 0,    
+adding line:             "use_hash_rands": 0,      
+adding line:             "avalanche": 0.5                 
+adding line:         }
+adding line:     ]
+adding line: }
+CFG::Parsing JSON File: flow_control.json
+adding line: 
+adding line: 
+adding line: {
+adding line: 
+adding line:         "specific_simulators":
+adding line:         {
+adding line: 
+adding line:                 "exclude_simulators":
+adding line:                 [
+adding line:                 "fabsim-emu"
+adding line:                 ],
+adding line: 
+adding line: 
+adding line:                 "flow_control":
+adding line:                  [
+adding line:                         {
+adding line: 
+adding line:                             "flow_control_level"    : 2,    
+adding line:                             "debug"                 : 0,                 
+adding line: 
+adding line:                             "max_unique_flows_per_nic" : 50, 
+adding line:                             "max_outstanding_bytes_per_flow" :0, 
+adding line: 
+adding line:                             
+adding line:                             "reordering_buffer__enable"                                    : 0,
+adding line: 
+adding line:                             "reordering_buffer__memory_limit"                              : 0,                              
+adding line:                             "reordering_buffer__dynamic_memory"                            : 0,                             
+adding line:                             "reordering_buffer__max_memory_per_flow_percentaje"            : 0,            
+adding line:                             "reordering_buffer__max_reorderlimit_per_flow"                 : 0,                 
+adding line:                             "reordering_buffer__erase_congestion_information_if_unordered" : 0, 
+adding line: 
+adding line:                             "pkt_count_drop"        : 0,        
+adding line: 
+adding line:                             "ECN_threshold"         : 0,         
+adding line: 
+adding line:                             
+adding line:                             "proactive_cong_avoidance" : 0, 
+adding line:                             "RED_threshold"         : 0.1,         
+adding line: 
+adding line:                             "detailed_cwnd_stats"   : 0,   
+adding line:                             "protocol_regression"   : 0,    
+adding line: 
+adding line:                             
+adding line:                             "ECN_marking_mechanism" : "none", 
+adding line:                             "ECN_marking_randomness_range" : 4294967295, 
+adding line: 
+adding line:                             
+adding line:                             "ECN_threshold_flits"     : 0,     
+adding line: 
+adding line:                             
+adding line:                             "RED_min_threshold"     : 0,     
+adding line:                             "RED_max_threshold"     : 0,     
+adding line:                             "RED_max_prob"          : 0.0,          
+adding line:                             "RED_queueing_weight"   : 0,   
+adding line:                             "RED_typical_pkt_transmission_time"   : "0 ns",   
+adding line: 
+adding line:                             
+adding line:                             "PRED_min_threshold"     : 0,     
+adding line:                             "PRED_max_threshold"     : 0,     
+adding line:                             "PRED_max_prob"          : 0.0,          
+adding line:                             "PRED_expected_rtt"      : 0,      
+adding line:                             "PRED_update_interval"   : 0,   
+adding line: 
+adding line:                             
+adding line:                             "PIER_alpha": 0,
+adding line:                             "PIER_beta": 0,
+adding line:                             "PIER_max_queue_size": 0,
+adding line:                             "PIER_ref_queue_size": 0,
+adding line:                             "PIER_scaling_threshold_1": 0,
+adding line:                             "PIER_scaling_threshold_2": 0,
+adding line:                             "PIER_gamma_range_1": 0,
+adding line:                             "PIER_gamma_range_2": 0,
+adding line:                             "PIER_gamma_range_3": 0,
+adding line:                             "PIER_update_interval": 0, 
+adding line: 
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             
+adding line:                             "BER__n2r_link__numerator" : 0,
+adding line:                             "BER__n2r_link__denominator" : 1,
+adding line:                             "BER__r2r_link__numerator" : 0,
+adding line:                             "BER__r2r_link__denominator" : 1
+adding line:                         }
+adding line:                 ]
+adding line: 
+adding line:         } 
+adding line: }
+CFG::Parsing JSON File: TcpNewReno.json
+adding line: 
+adding line: 
+adding line: {
+adding line: 
+adding line:         "specific_simulators":
+adding line:         {
+adding line: 
+adding line:                 "exclude_simulators":
+adding line:                 [
+adding line:                 "fabsim-emu"
+adding line:                 ],
+adding line: 
+adding line: 
+adding line:                 "TcpNewReno":
+adding line:                  [
+adding line:                         {
+adding line: 
+adding line:                             "e2e_protocol"     : "TcpNewReno", 
+adding line: 
+adding line:                             "debug"                 : 0,                 
+adding line: 
+adding line:                             "multiplier_timeout"    : 2,    
+adding line:                             "enable_dynamic_RTO"    : 1,    
+adding line:                             "timeout_period"        : "10000 ns",      
+adding line:                             "granularity"           : "100 ns",         
+adding line:                             "initial_window"        : 10,        
+adding line:                             "max_window"            : 0,            
+adding line:                             "initial_ssthres"       : 10000,       
+adding line:                             "alpha"                 : 0.125,                 
+adding line:                             "beta"                  : 0.25,                  
+adding line: 
+adding line: 
+adding line:                             "ECN_threshold"         : 0,         
+adding line: 
+adding line:                             
+adding line:                             "proactive_cong_avoidance" : 0, 
+adding line:                             "RED_threshold"         : 0.1,         
+adding line: 
+adding line:                             "ECN_MONP_enabled"      : 0,      
+adding line:                             "ECN_MONP_threshold"    : 10,    
+adding line: 
+adding line:                             "detailed_cwnd_stats"   : 0,   
+adding line:                             "protocol_regression"   : 0    
+adding line:                         }
+adding line:                 ]
+adding line: 
+adding line:         } 
+adding line: }
+CFG::Parsing JSON File: TcpDCTCP.json
+adding line: 
+adding line: 
+adding line: {
+adding line: 
+adding line:         "specific_simulators":
+adding line:         {
+adding line: 
+adding line:                 "exclude_simulators":
+adding line:                 [
+adding line:                 "fabsim-emu"
+adding line:                 ],
+adding line: 
+adding line: 
+adding line:                 "TcpDCTCP":
+adding line:                  [
+adding line:                         {
+adding line: 
+adding line:                             "debug"                 : 0,                 
+adding line: 
+adding line: 
+adding line:                             "multiplier_timeout"    : 2,    
+adding line:                             "enable_dynamic_RTO"    : 1,    
+adding line:                             "timeout_period"        : "10000 ns",      
+adding line:                             "granularity"           : "100 ns",         
+adding line:                             "initial_window"        : 10,        
+adding line:                             "max_window"            : 0,            
+adding line:                             "initial_ssthres"       : 10000,       
+adding line: 
+adding line:                             "alpha"                 : 0.125,                 
+adding line:                             "beta"                  : 0.25,                  
+adding line: 
+adding line:                             "ECN_threshold"         : 75,         
+adding line: 
+adding line:                             
+adding line:                             "proactive_cong_avoidance" : 0, 
+adding line:                             "RED_threshold"         : 0.1,         
+adding line: 
+adding line:                             "ECN_MONP_enabled"      : 0,      
+adding line:                             "ECN_MONP_threshold"    : 10,    
+adding line: 
+adding line:                             "DCTCP_gain"            : 0.0625,            
+adding line:                             "detailed_cwnd_stats"   : 0,   
+adding line:                             "protocol_regression"   : 0    
+adding line:                         }
+adding line:                 ]
+adding line: 
+adding line:         } 
+adding line: }
+CFG::Parsing JSON File: DCQCN.json
+adding line: 
+adding line: {
+adding line: 
+adding line:         "specific_simulators":
+adding line:         {
+adding line: 
+adding line:            "exclude_simulators":
+adding line:            [
+adding line:                 "fabsim-emu"
+adding line:            ],
+adding line: 
+adding line:            "DCQCN":
+adding line:            [
+adding line:                 {
+adding line: 
+adding line:                    "detailed_cwnd_stats" : 0,   
+adding line:                    "protocol_regression" : 0,    
+adding line:                    "initial_window"      : 10,
+adding line:                    "max_window"          : 0,
+adding line:                    "initial_ssthres"     : 10000,
+adding line:                    "granularity"         : "100 ns",
+adding line:                    "timeout_period"      : "10000 ns",
+adding line:                    "enable_dynamic_RTO"  : 0,
+adding line:                    "multiplier_timeout"  : 2,
+adding line:                    "alpha"               : 0.125,
+adding line:                    "beta"                : 0.25,
+adding line: 
+adding line: 
+adding line:                    "fast_recovery_steps"  : 4,
+adding line:                    "dcqcn_gain"     : 0.0625,
+adding line:                    "byte_counter"   : 153600,
+adding line:                    "timer"          : "55000 ns",
+adding line:                    "alpha_timer"    : "55000 ns",
+adding line:                    "R_ai"           : 0.01,
+adding line:                    "R_hai"          : 0.1,
+adding line:                    "R_m"            : 0.01,
+adding line: 
+adding line:                    "base_RTT"       : "0 ns", 
+adding line:                    "dynamic_window" : "0", 
+adding line:                    "initial_window_factor" : "1", 
+adding line:                    "enable_flow_state_reset": "0", 
+adding line: 
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    
+adding line:                    "CNP_strategy"   : "receiver_controlled",
+adding line:                    "CNP_period"     : "50000 ns",
+adding line:                    "first_CNP_rate" : -1,  
+adding line: 
+adding line:                    "reliable"       : "0",               
+adding line:                    "selective_acks" : "0",         
+adding line:                    "RTT_multiplier" : 1,         
+adding line:                    "max_num_intervals" : 3,      
+adding line: 
+adding line:                    "ai_mode"               : "0", 
+adding line:                    "active_flow_timer"     : "0 ns", 
+adding line: 
+adding line:                    "cnps_as_acks"          : "0", 
+adding line:                    "cnp_period_event"      : "0" 
+adding line:                 }
+adding line:            ]
+adding line: 
+adding line:         }
+adding line: 
+adding line: }
+CFG::Parsing JSON File: node.json
+adding line: 
+adding line: {
+adding line: 
+adding line:     
+adding line:     "node":
+adding line:     {
+adding line:         "max_outstanding_req": 0,  
+adding line:         "max_apps_allowed": 4, 
+adding line:         "packet_order_check_enable" : 0, 
+adding line:         "use_node_credits": 0, 
+adding line:         "credited_packets_byte_threshold": 2048, 
+adding line: 
+adding line:         "ignore_buffers" : 1, 
+adding line:         "swm_mntu": 32,  
+adding line:         "swm_mxtu": 10240,  
+adding line:         "swm_maxq" : 0, 
+adding line: 
+adding line:         
+adding line:         
+adding line:         
+adding line: 
+adding line:         "swm_header_bytes" : 128,
+adding line:         "swm_getmem_req_size" : 128,
+adding line:         "swm_putmem_rsp_size" : 128,
+adding line:         "swm_intmem_req_size" : 128,
+adding line:         "swm_intmem_rsp_size" : 128,
+adding line: 
+adding line:         "rendezvous_enable" : 0,  
+adding line:         "rendezvous_thold_bytes" : 16, 
+adding line:         "rendezvous_rts_limit" : 10, 
+adding line:         "rendezvous_cts_stall" : 0, 
+adding line:         "rendezvous_mtu" : 4096,             
+adding line: 
+adding line:         "sw_host_latency" : "2 us", 
+adding line: 
+adding line:         "enable_detailed_stats" : 0, 
+adding line: 
+adding line: 
+adding line:         "core_count": 1,    
+adding line:         "nw_port_count": 1,  
+adding line:         "max_pkts_per_cycle": 1,  
+adding line: 
+adding line:         "core_to_nw_port_mapping_mode": 0, 
+adding line:         "node_state_mode" : 0,   
+adding line: 
+adding line:         "intra_turnaround" : 0,    
+adding line: 
+adding line:         "node_vc_arbitration_scheme" : 5, 
+adding line: 
+adding line:         "congestion_information_when_drop" : 0,
+adding line: 
+adding line:         
+adding line:         "model_memory_system": 0,  
+adding line:         "socket_node_ids" : "0-15", 
+adding line:         "memory_node_ids" : "16-19", 
+adding line:         "socket_link_latency": 0,  
+adding line:         "memory_link_latency": 0,   
+adding line: 
+adding line:         
+adding line:         "enable_l2_node_interleave": 0, 
+adding line:         "l2_node_interleave_level": 1, 
+adding line:         "l2_node_interleave_prob_denom": 2048, 
+adding line:         "l2_node_interleave_newq_prob_num" : 0, 
+adding line:         "l2_node_interleave_activeq_prob_num" : 0, 
+adding line:         "min_normal_duration" : 50, 
+adding line:         "max_normal_duration" : 500, 
+adding line:         "steady_state_epochs" : 5, 
+adding line: 
+adding line:         
+adding line:         "enable_preemption" : 0, 
+adding line:         "enable_node_preemption" : 0, 
+adding line:         "credit_multiplier" : 1, 
+adding line:         "minimum_node_credit_interval" : 206,  
+adding line:         "credit_return_policy" :2, 
+adding line:         "response_vc_policy" : 0 
+adding line:     },
+adding line: 
+adding line:      "core":
+adding line:      {
+adding line:         "enable_responses": 1,  
+adding line:         "enable_message_responses": 0,  
+adding line:         "arbitration": "weighted",         
+adding line:         "max_contexts": 1,          
+adding line:                                                 
+adding line:          
+adding line:         "max_core_buffersize" : 65536, 
+adding line:         
+adding line:         
+adding line:         "use_msg_in_flow_id" : 0, 
+adding line:          
+adding line:         
+adding line:         "max_qxbar_pkts_allowed" : 1, 
+adding line: 
+adding line:         
+adding line:         "transport_layer_processing_delay" : "0 ns", 
+adding line:         "irq_delay" : "0 ns" 
+adding line: 
+adding line:      },
+adding line: 
+adding line: 
+adding line:     
+adding line:     "specific_simulators":
+adding line:     {
+adding line: 
+adding line:         "include_simulators":
+adding line:         [
+adding line:             "fabsim-emu"
+adding line:         ],
+adding line: 
+adding line:         "core":
+adding line:         {
+adding line:             "pids_to_lids":
+adding line:             [
+adding line:                 {
+adding line:                     "pids": "0-63",
+adding line:                     "lids": "64-127"
+adding line:                 }
+adding line:             ]
+adding line:         }
+adding line:     }
+adding line: 
+adding line: }     
+CFG::Parsing JSON File: hfi.json
+adding line: {
+adding line: 
+adding line:     "specific_simulators":
+adding line:    {
+adding line:      "include_simulators":
+adding line:      [
+adding line:          "fabsim-x"
+adding line:      ]
+adding line: 
+adding line:    },
+adding line: 
+adding line:     "hfi":
+adding line:     {
+adding line:         "bytes_per_mtu": 1512,        
+adding line: 
+adding line:         "debug": 0,                    
+adding line:         "packet_trace": 0,          
+adding line:         "trace_node": -1,              
+adding line:         "trace_node_level": 4,  
+adding line:         "vc_cnt": 8,
+adding line: 
+adding line:         "l2_packet_pad_boundary" : 32, 
+adding line: 
+adding line:         "bytes_per_flit": 32,
+adding line:         "pkt_sz_array_size": 0,  
+adding line:         "pkt_sz_array": [128, 512, 10240], 
+adding line:         "max_hfi_buffersize" : 1048576, 
+adding line:         "offered_load_link_clock_domain": 1,
+adding line:         "interframe_gap": 0,   
+adding line:         "bytes_per_credit": 32,
+adding line:         "min_credits_per_packet": 0,  
+adding line: 
+adding line:         "bytes_per_cycle" : 32 
+adding line: 
+adding line:     }
+adding line: }
+CFG::Parsing JSON File: switch.json
+adding line: 
+adding line: 
+adding line: {
+adding line: 
+adding line:     "specific_simulators":
+adding line:     {
+adding line: 
+adding line:         "exclude_simulators":
+adding line:         [
+adding line:             "fabsim-emu"
+adding line:         ],
+adding line: 
+adding line:         "switch":
+adding line:         [
+adding line:             {
+adding line:                 "applies_to"   : "all",
+adding line:                 "switch_type"  : "oq",
+adding line:                 "config_group" : "default"
+adding line:             },
+adding line:             {
+adding line:                 "applies_to"   : "",
+adding line:                 "switch_type"  : "",
+adding line:                 "config_group" : "default"
+adding line:             },
+adding line:             {
+adding line:                 "applies_to"   : "",
+adding line:                 "switch_type"  : "",
+adding line:                 "config_group" : "default"
+adding line:             },
+adding line:             {
+adding line:                 "applies_to"   : "",
+adding line:                 "switch_type"  : "",
+adding line:                 "config_group" : "default"
+adding line:             },
+adding line:             {
+adding line:                 "applies_to"   : "",
+adding line:                 "switch_type"  : "",
+adding line:                 "config_group" : "default"
+adding line:             }
+adding line:         ]
+adding line: 
+adding line:     }
+adding line: }
+CFG::Parsing JSON File: oq_switch.json
+adding line: 
+adding line: 
+adding line: {
+adding line: 
+adding line:     "specific_simulators":
+adding line:     {
+adding line: 
+adding line:         "exclude_simulators":
+adding line:         [
+adding line:             "fabsim-emu"
+adding line:         ],
+adding line: 
+adding line:         "oq_switch":
+adding line:         {
+adding line:             "default":
+adding line:             [
+adding line:                 {
+adding line:                     "debug": 0,        
+adding line:                     "enable_routing_path_record" : 0, 
+adding line:                     "vc_count": 8,  
+adding line:                     "vc_arbitration_scheme" : 0, 
+adding line:                     "intra_sw_delay" : "50 ns",
+adding line:                     
+adding line:                     "use_pfc": 0,                    
+adding line:                     "pause_cond_pfc": 1200,      
+adding line:                     "unpause_cond_pfc": 1000,  
+adding line:                     "assert_no_drop": 1,      
+adding line: 
+adding line:                     
+adding line:                     "smart_ECN" : 0,                       
+adding line:                     "smart_ECN_headroom" : 1.0,     
+adding line:                     
+adding line:                     
+adding line:                     "switch_hint_enabled" : 0,   
+adding line:                     "switch_hint_pkt_drop" : 0, 
+adding line:                     "switch_hint_ecn"    : 0,        
+adding line:                     "switch_hint_vc"     : 7,         
+adding line:                     "switch_hint_mode"   : 0,       
+adding line:                     "disable_ecn_echo"   : 0,       
+adding line:                     "hint_generation_interval" : "0 ns" 
+adding line: 
+adding line:                     
+adding line:                 }
+adding line:             ]
+adding line:         }
+adding line: 
+adding line:     }
+adding line: }
+CFG::Parsing JSON File: job.json
+adding line: {
+adding line:     "jobs":
+adding line:     [
+adding line:         {
+adding line:             "name": "my_job",            
+adding line:             "size": 128,              
+adding line:             "time": 0,              
+adding line:             "kill_time": -1,    
+adding line:             "weight": 1,          
+adding line:             "work_based": 1,            
+adding line:                                         
+adding line:             "e2e_protocol" : "DCQCN", 
+adding line:             "seed": 0,              
+adding line:             "include": "job_cfg.json",      
+adding line:             "include": "empty_include.json",    
+adding line:             "include": "empty_include.json",      
+adding line:             "enable_mem_ops": "false"       
+adding line:         }
+adding line:     ]
+adding line: }
+CFG::Parsing JSON File: stats.json
+adding line: 
+adding line: 
+adding line: {
+adding line:     "stats":
+adding line:     [
+adding line:         {
+adding line: 
+adding line:             
+adding line:             "dump_stats": true,
+adding line: 
+adding line:             
+adding line:             "file_name": "synthetic",
+adding line: 
+adding line:             
+adding line:             "dump_period": "0 ns",       
+adding line:             "dump_periodically": false,                
+adding line: 
+adding line:             
+adding line:             "reset_period": "20000 ns",    
+adding line:             "reset_periodically": false,               
+adding line:             "enable_static_permutation_stats"      : 0, 
+adding line: 
+adding line:             "enable_fct_stats" : false,
+adding line:             "enable_detailed_fct_stats": 0, 
+adding line:             "enable_exp_histograms" : 0,
+adding line:             "small_flow_size":  10240,
+adding line:             "large_flow_size":  102400,
+adding line: 
+adding line:             
+adding line:             "enable_per_switch_stats" : true,
+adding line:             "enable_per_node_stats"   : true,
+adding line:             
+adding line:             "detailed_drop_gap_stats"   : false,
+adding line:             
+adding line:             "temporal_pkt_stats__enable" : false,
+adding line:             "temporal_pkt_stats__switches_to_track" : "", 
+adding line:             "temporal_pkt_stats__nodes_to_track" : "", 
+adding line: 
+adding line:             
+adding line:             
+adding line:             "temporal_dcqcn_stats__enable" : false,
+adding line:             "temporal_dcqcn_stats__switches_to_track" : "", 
+adding line:             "temporal_dcqcn_stats__nodes_to_track" : "", 
+adding line: 
+adding line:             
+adding line:             "detailed_memory_stats__enable" : 0, 
+adding line:             "memory_interval_period" : "1000 ns", 
+adding line: 
+adding line:             "fct_stats__small_msgs__histo__bin_size"  : 10000,
+adding line:             "fct_stats__small_msgs__histo__num_bins"  : 50,
+adding line:             "fct_stats__medium_msgs__histo__bin_size" : 10000,
+adding line:             "fct_stats__medium_msgs__histo__num_bins" : 50,
+adding line:             "fct_stats__large_msgs__histo__bin_size"  : 10000,
+adding line:             "fct_stats__large_msgs__histo__num_bins"  : 50
+adding line:         }
+adding line:     ]
+adding line: }
+CFG::Parsing JSON File: offered_load.json
+adding line: {
+adding line: 
+adding line:     "specific_simulators":
+adding line:     {
+adding line: 
+adding line:         "exclude_simulators":
+adding line:         [
+adding line:             "fabsim-emu"
+adding line:         ],
+adding line: 
+adding line:         "offered_loads":
+adding line:         [
+adding line:             {
+adding line:                 "ports": "0-128",
+adding line:                 "offered_load_probability_numerator": 100,
+adding line:                 "offered_load_probability_denominator": 100,
+adding line:                 "full_load_bytes_per_cycle_numerator": 32,
+adding line:                 "full_load_bytes_per_cycle_denominator": 1,
+adding line: 
+adding line:                 
+adding line:                 
+adding line:                 "bursty_mode" : 0,
+adding line: 
+adding line:                 "swm_use_offeredload" : 1, 
+adding line:                 
+adding line:                 
+adding line:                 "use_random": true
+adding line:                 
+adding line:             }
+adding line:         ]
+adding line: 
+adding line:     }
+adding line: }
+CFG::Parsing JSON File: credits.json
+adding line: 
+adding line: 
+adding line: {
+adding line: 
+adding line:     "specific_simulators":
+adding line:     {
+adding line: 
+adding line:         "exclude_simulators":
+adding line:         [
+adding line:             "fabsim-emu"
+adding line:         ],
+adding line: 
+adding line:         "node_credits":
+adding line:         {
+adding line:             "include": "node_credits.json"      
+adding line:         },
+adding line: 
+adding line:         "router_credits":
+adding line:         {
+adding line:             "include": "router_credits.json"    
+adding line:         }
+adding line: 
+adding line:     }
+adding line: }
+CFG::Parsing JSON File: steady_state.json
+adding line: {
+adding line: 
+adding line:     "specific_simulators":
+adding line:     {
+adding line: 
+adding line:         "exclude_simulators":
+adding line:         [
+adding line:             "fabsim-emu"
+adding line:         ],
+adding line: 
+adding line:         "steady_state": {
+adding line:             "num_epochs": 100,
+adding line:             "epoch_duration": "5000 ns",
+adding line:             "convergence_window" : 10,
+adding line:             "sampling_window" : 2,
+adding line:             "exit_on_convergence" : 1,
+adding line:             "convergence_metric" : "none",
+adding line:             "convergence_percentage" : 1.0,
+adding line:             "simulation_completion_granularity" : 100
+adding line:         }
+adding line: 
+adding line:     }
+adding line: }
+CFG::Parsing JSON File: empty_include.json
+adding line: {
+adding line: }
+CFG::Parsing JSON File: job_cfg.json
+adding line: {
+adding line:     "dll_path": "${FABSIM_APPS_PATH}/dll/archbench_trace.so",
+adding line:     "cfg": {
+adding line:         "app": "archbench_trace",
+adding line:         "iteration_cnt": 1,            
+adding line:         "noop_cnt": 0,                      
+adding line:         "compute_delay": 0,            
+adding line:         "compute_time_unit": "ns",
+adding line: 
+adding line:         "m_debug"         : 0,
+adding line: 
+adding line:         "archbench_trace" : "${ws_cfg}/swm/archbench/T128_MP1_DP128_ber_enc_s512.json",
+adding line:         "trace_mode"   : "1",
+adding line:         "algorithm"    : "RABENSEIFNER",
+adding line:         "root_id"      : 0,
+adding line:         "k_value"      : 2,
+adding line: 
+adding line:         "model_parallel_instances" : 2,
+adding line:         "data_parallel_instances"  : 8,
+adding line: 
+adding line:         "debug_mode" : 3,
+adding line:         
+adding line:         "attribute_table_filename" : "", 
+adding line:         
+adding line:         "disable_attr_table_sizecheck" :1,
+adding line:         "include": "msg_traffic.json"
+adding line:     } 
+adding line: }
+CFG::Parsing JSON File: msg_traffic.json
+adding line: 
+adding line: 
+adding line: 
+adding line: 
+adding line: 
+adding line: 
+adding line: 
+adding line: {
+adding line:     "msg_traffic":
+adding line:     [
+adding line:         {
+adding line:             "name": "default",  
+adding line:             "regex": ".*",      
+adding line:             "descriptors":      
+adding line:             [
+adding line:                 {
+adding line:                     "parts": 1,
+adding line:                     "msg_req_bytes": 4096,
+adding line:                     "msg_rsp_bytes": 0,
+adding line:                     "pkt_rsp_bytes": 32,
+adding line:                     "msg_req_routing": "adaptive",
+adding line:                     "msg_rsp_routing": "minimal",
+adding line:                     "pkt_rsp_routing": "minimal",
+adding line:                     "msg_req_vcs": "0",
+adding line:                     "msg_rsp_vcs": "0",
+adding line:                     "pkt_rsp_vcs": "0",
+adding line:                     "msg_attribute": "na",
+adding line:                     "l2_encoding": "HDR_16B",
+adding line:                     "dlid_xors": "0"
+adding line:                 }
+adding line:             ]
+adding line:         }
+adding line:     ]
+adding line: }
+CFG::Parsing JSON File: empty_include.json
+adding line: {
+adding line: }
+CFG::Parsing JSON File: empty_include.json
+adding line: {
+adding line: }
+CFG::Parsing JSON File: node_credits.json
+adding line: 
+adding line: 
+adding line: {
+adding line:     "type": "static",
+adding line:     "vc_count": 8,          
+adding line:     "flits_per_vc": 2048   
+adding line: }
+CFG::Parsing JSON File: router_credits.json
+adding line: 
+adding line: 
+adding line: {
+adding line:     "type": "static",
+adding line:     "vc_count": 8,          
+adding line:     "flits_per_vc": 32768   
+adding line: }
+mpi_rank=0 initializing rng with seed: 1234
+switch_type: oq
+ElasticLogger Init done.
+git commit hash: afe387f
+
+clock_domains count: 1
+finished configuring clock_domain_manager...
+[Topology] Single topology mode
+[Base Topology] Applying switch_type oq, config_group=default to all switches
+topology link latency per 50
+topology link latency per 50
+bias_seed: 1094727837
+[Topology] Applying switch_type=oq, config_group=default to all switches
+[Topology] Rank 0, Switch 0 type=oq, config_group=default
+[Topology] Rank 0, Switch 1 type=oq, config_group=default
+[Topology] Rank 0, Switch 2 type=oq, config_group=default
+[Topology] Rank 0, Switch 3 type=oq, config_group=default
+[Topology] Rank 1, Switch 4 type=oq, config_group=default
+[Topology] Rank 1, Switch 5 type=oq, config_group=default
+there are 4 switches in rank 0
+there are 2 switches in rank 1
+DONE tree_topology::tree_topology
+termination_time: 1000 unit: ns
+terminator->config()
+termination_time: 1000 unit: ns
+	name: event_queue; scale: 1
+	name: link; scale: 1
+	name: node; scale: 1
+	name: r2r_link; scale: 1
+	name: router; scale: 1
+
+Created global offered_load_rng global_offered_load_seed = 1335968403
+rank 0 initializing...
+[Switch 0] Reading configuration group default
+[Switch 0] config::intra_switch_delay=50 ns (25 ticks)
+[Switch 1] Reading configuration group default
+[Switch 1] config::intra_switch_delay=50 ns (25 ticks)
+[Switch 2] Reading configuration group default
+[Switch 2] config::intra_switch_delay=50 ns (25 ticks)
+[Switch 3] Reading configuration group default
+[Switch 3] config::intra_switch_delay=50 ns (25 ticks)
+[Switch 4] Reading configuration group default
+[Switch 4] config::intra_switch_delay=50 ns (25 ticks)
+[Switch 5] Reading configuration group default
+[Switch 5] config::intra_switch_delay=50 ns (25 ticks)
+[INFO] Node ID 0 N2R_BER=0
+endpt_id: 0 using probability: 1
+[INFO] Node ID 1 N2R_BER=0
+endpt_id: 1 using probability: 1
+[INFO] Node ID 2 N2R_BER=0
+endpt_id: 2 using probability: 1
+[INFO] Node ID 3 N2R_BER=0
+endpt_id: 3 using probability: 1
+[INFO] Node ID 4 N2R_BER=0
+endpt_id: 4 using probability: 1
+[INFO] Node ID 5 N2R_BER=0
+endpt_id: 5 using probability: 1
+[INFO] Node ID 6 N2R_BER=0
+endpt_id: 6 using probability: 1
+[INFO] Node ID 7 N2R_BER=0
+endpt_id: 7 using probability: 1
+[INFO] Node ID 8 N2R_BER=0
+endpt_id: 8 using probability: 1
+[INFO] Node ID 9 N2R_BER=0
+endpt_id: 9 using probability: 1
+[INFO] Node ID 10 N2R_BER=0
+endpt_id: 10 using probability: 1
+[INFO] Node ID 11 N2R_BER=0
+endpt_id: 11 using probability: 1
+[INFO] Node ID 12 N2R_BER=0
+endpt_id: 12 using probability: 1
+[INFO] Node ID 13 N2R_BER=0
+endpt_id: 13 using probability: 1
+[INFO] Node ID 14 N2R_BER=0
+endpt_id: 14 using probability: 1
+[INFO] Node ID 15 N2R_BER=0
+endpt_id: 15 using probability: 1
+[INFO] Node ID 16 N2R_BER=0
+endpt_id: 16 using probability: 1
+[INFO] Node ID 17 N2R_BER=0
+endpt_id: 17 using probability: 1
+[INFO] Node ID 18 N2R_BER=0
+endpt_id: 18 using probability: 1
+[INFO] Node ID 19 N2R_BER=0
+endpt_id: 19 using probability: 1
+[INFO] Node ID 20 N2R_BER=0
+endpt_id: 20 using probability: 1
+[INFO] Node ID 21 N2R_BER=0
+endpt_id: 21 using probability: 1
+[INFO] Node ID 22 N2R_BER=0
+endpt_id: 22 using probability: 1
+[INFO] Node ID 23 N2R_BER=0
+endpt_id: 23 using probability: 1
+[INFO] Node ID 24 N2R_BER=0
+endpt_id: 24 using probability: 1
+[INFO] Node ID 25 N2R_BER=0
+endpt_id: 25 using probability: 1
+[INFO] Node ID 26 N2R_BER=0
+endpt_id: 26 using probability: 1
+[INFO] Node ID 27 N2R_BER=0
+endpt_id: 27 using probability: 1
+[INFO] Node ID 28 N2R_BER=0
+endpt_id: 28 using probability: 1
+[INFO] Node ID 29 N2R_BER=0
+endpt_id: 29 using probability: 1
+[INFO] Node ID 30 N2R_BER=0
+endpt_id: 30 using probability: 1
+[INFO] Node ID 31 N2R_BER=0
+endpt_id: 31 using probability: 1
+[INFO] Node ID 32 N2R_BER=0
+endpt_id: 32 using probability: 1
+[INFO] Node ID 33 N2R_BER=0
+endpt_id: 33 using probability: 1
+[INFO] Node ID 34 N2R_BER=0
+endpt_id: 34 using probability: 1
+[INFO] Node ID 35 N2R_BER=0
+endpt_id: 35 using probability: 1
+[INFO] Node ID 36 N2R_BER=0
+endpt_id: 36 using probability: 1
+[INFO] Node ID 37 N2R_BER=0
+endpt_id: 37 using probability: 1
+[INFO] Node ID 38 N2R_BER=0
+endpt_id: 38 using probability: 1
+[INFO] Node ID 39 N2R_BER=0
+endpt_id: 39 using probability: 1
+[INFO] Node ID 40 N2R_BER=0
+endpt_id: 40 using probability: 1
+[INFO] Node ID 41 N2R_BER=0
+endpt_id: 41 using probability: 1
+[INFO] Node ID 42 N2R_BER=0
+endpt_id: 42 using probability: 1
+[INFO] Node ID 43 N2R_BER=0
+endpt_id: 43 using probability: 1
+[INFO] Node ID 44 N2R_BER=0
+endpt_id: 44 using probability: 1
+[INFO] Node ID 45 N2R_BER=0
+endpt_id: 45 using probability: 1
+[INFO] Node ID 46 N2R_BER=0
+endpt_id: 46 using probability: 1
+[INFO] Node ID 47 N2R_BER=0
+endpt_id: 47 using probability: 1
+[INFO] Node ID 48 N2R_BER=0
+endpt_id: 48 using probability: 1
+[INFO] Node ID 49 N2R_BER=0
+endpt_id: 49 using probability: 1
+[INFO] Node ID 50 N2R_BER=0
+endpt_id: 50 using probability: 1
+[INFO] Node ID 51 N2R_BER=0
+endpt_id: 51 using probability: 1
+[INFO] Node ID 52 N2R_BER=0
+endpt_id: 52 using probability: 1
+[INFO] Node ID 53 N2R_BER=0
+endpt_id: 53 using probability: 1
+[INFO] Node ID 54 N2R_BER=0
+endpt_id: 54 using probability: 1
+[INFO] Node ID 55 N2R_BER=0
+endpt_id: 55 using probability: 1
+[INFO] Node ID 56 N2R_BER=0
+endpt_id: 56 using probability: 1
+[INFO] Node ID 57 N2R_BER=0
+endpt_id: 57 using probability: 1
+[INFO] Node ID 58 N2R_BER=0
+endpt_id: 58 using probability: 1
+[INFO] Node ID 59 N2R_BER=0
+endpt_id: 59 using probability: 1
+[INFO] Node ID 60 N2R_BER=0
+endpt_id: 60 using probability: 1
+[INFO] Node ID 61 N2R_BER=0
+endpt_id: 61 using probability: 1
+[INFO] Node ID 62 N2R_BER=0
+endpt_id: 62 using probability: 1
+[INFO] Node ID 63 N2R_BER=0
+endpt_id: 63 using probability: 1
+[INFO] Node ID 64 N2R_BER=0
+endpt_id: 64 using probability: 1
+[INFO] Node ID 65 N2R_BER=0
+endpt_id: 65 using probability: 1
+[INFO] Node ID 66 N2R_BER=0
+endpt_id: 66 using probability: 1
+[INFO] Node ID 67 N2R_BER=0
+endpt_id: 67 using probability: 1
+[INFO] Node ID 68 N2R_BER=0
+endpt_id: 68 using probability: 1
+[INFO] Node ID 69 N2R_BER=0
+endpt_id: 69 using probability: 1
+[INFO] Node ID 70 N2R_BER=0
+endpt_id: 70 using probability: 1
+[INFO] Node ID 71 N2R_BER=0
+endpt_id: 71 using probability: 1
+[INFO] Node ID 72 N2R_BER=0
+endpt_id: 72 using probability: 1
+[INFO] Node ID 73 N2R_BER=0
+endpt_id: 73 using probability: 1
+[INFO] Node ID 74 N2R_BER=0
+endpt_id: 74 using probability: 1
+[INFO] Node ID 75 N2R_BER=0
+endpt_id: 75 using probability: 1
+[INFO] Node ID 76 N2R_BER=0
+endpt_id: 76 using probability: 1
+[INFO] Node ID 77 N2R_BER=0
+endpt_id: 77 using probability: 1
+[INFO] Node ID 78 N2R_BER=0
+endpt_id: 78 using probability: 1
+[INFO] Node ID 79 N2R_BER=0
+endpt_id: 79 using probability: 1
+[INFO] Node ID 80 N2R_BER=0
+endpt_id: 80 using probability: 1
+[INFO] Node ID 81 N2R_BER=0
+endpt_id: 81 using probability: 1
+[INFO] Node ID 82 N2R_BER=0
+endpt_id: 82 using probability: 1
+[INFO] Node ID 83 N2R_BER=0
+endpt_id: 83 using probability: 1
+[INFO] Node ID 84 N2R_BER=0
+endpt_id: 84 using probability: 1
+[INFO] Node ID 85 N2R_BER=0
+endpt_id: 85 using probability: 1
+[INFO] Node ID 86 N2R_BER=0
+endpt_id: 86 using probability: 1
+[INFO] Node ID 87 N2R_BER=0
+endpt_id: 87 using probability: 1
+[INFO] Node ID 88 N2R_BER=0
+endpt_id: 88 using probability: 1
+[INFO] Node ID 89 N2R_BER=0
+endpt_id: 89 using probability: 1
+[INFO] Node ID 90 N2R_BER=0
+endpt_id: 90 using probability: 1
+[INFO] Node ID 91 N2R_BER=0
+endpt_id: 91 using probability: 1
+[INFO] Node ID 92 N2R_BER=0
+endpt_id: 92 using probability: 1
+[INFO] Node ID 93 N2R_BER=0
+endpt_id: 93 using probability: 1
+[INFO] Node ID 94 N2R_BER=0
+endpt_id: 94 using probability: 1
+[INFO] Node ID 95 N2R_BER=0
+endpt_id: 95 using probability: 1
+[INFO] Node ID 96 N2R_BER=0
+endpt_id: 96 using probability: 1
+[INFO] Node ID 97 N2R_BER=0
+endpt_id: 97 using probability: 1
+[INFO] Node ID 98 N2R_BER=0
+endpt_id: 98 using probability: 1
+[INFO] Node ID 99 N2R_BER=0
+endpt_id: 99 using probability: 1
+[INFO] Node ID 100 N2R_BER=0
+endpt_id: 100 using probability: 1
+[INFO] Node ID 101 N2R_BER=0
+endpt_id: 101 using probability: 1
+[INFO] Node ID 102 N2R_BER=0
+endpt_id: 102 using probability: 1
+[INFO] Node ID 103 N2R_BER=0
+endpt_id: 103 using probability: 1
+[INFO] Node ID 104 N2R_BER=0
+endpt_id: 104 using probability: 1
+[INFO] Node ID 105 N2R_BER=0
+endpt_id: 105 using probability: 1
+[INFO] Node ID 106 N2R_BER=0
+endpt_id: 106 using probability: 1
+[INFO] Node ID 107 N2R_BER=0
+endpt_id: 107 using probability: 1
+[INFO] Node ID 108 N2R_BER=0
+endpt_id: 108 using probability: 1
+[INFO] Node ID 109 N2R_BER=0
+endpt_id: 109 using probability: 1
+[INFO] Node ID 110 N2R_BER=0
+endpt_id: 110 using probability: 1
+[INFO] Node ID 111 N2R_BER=0
+endpt_id: 111 using probability: 1
+[INFO] Node ID 112 N2R_BER=0
+endpt_id: 112 using probability: 1
+[INFO] Node ID 113 N2R_BER=0
+endpt_id: 113 using probability: 1
+[INFO] Node ID 114 N2R_BER=0
+endpt_id: 114 using probability: 1
+[INFO] Node ID 115 N2R_BER=0
+endpt_id: 115 using probability: 1
+[INFO] Node ID 116 N2R_BER=0
+endpt_id: 116 using probability: 1
+[INFO] Node ID 117 N2R_BER=0
+endpt_id: 117 using probability: 1
+[INFO] Node ID 118 N2R_BER=0
+endpt_id: 118 using probability: 1
+[INFO] Node ID 119 N2R_BER=0
+endpt_id: 119 using probability: 1
+[INFO] Node ID 120 N2R_BER=0
+endpt_id: 120 using probability: 1
+[INFO] Node ID 121 N2R_BER=0
+endpt_id: 121 using probability: 1
+[INFO] Node ID 122 N2R_BER=0
+endpt_id: 122 using probability: 1
+[INFO] Node ID 123 N2R_BER=0
+endpt_id: 123 using probability: 1
+[INFO] Node ID 124 N2R_BER=0
+endpt_id: 124 using probability: 1
+[INFO] Node ID 125 N2R_BER=0
+endpt_id: 125 using probability: 1
+[INFO] Node ID 126 N2R_BER=0
+endpt_id: 126 using probability: 1
+[INFO] Node ID 127 N2R_BER=0
+endpt_id: 127 using probability: 1
+setting xlation_tables with node_cpu_core_count: 1
+global_job_time_offset_value of 0
+InitFromCFE ... grabbing node cfg
+InitFromCFE.... successfully grabbed node cfg
+scheduler_seed: 1756294682
+Found e2e_protocol: DCQCN
+mpi_rank: 0 has seed=2006775854
+launch_times.size() is 1
+detected protocol to initialize: DCQCN
+fabsim-x stat_event_manager configure
+reset_period: 20000 | reset_periodically: 0 | reset_period_units: ns | reset_tick: 10000
+Sanity Check...
+Simulate...
+heartbeat_tick_period: 500000 | heartbeat_time: 1 | heartbeat_time_units: ms
+entity_id 22
+after entity_id 22
+LaunchJobs called @0
+launch_times.size is 1
+System Processor OK
+Executing command file /nfs/sc/disks/slx_1083/aneriach/workspaces/my_fabsim-workspacess/fabsim//apps/dll/archbench_trace.so
+/nfs/sc/disks/slx_1083/aneriach/workspaces/my_fabsim-workspacess/fabsim//apps/dll/archbench_trace.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, not stripped
+Host: scc064002 The value returned was: 0
+NEW 0 0x2aaab92b04d0 outstanding_sends.size() is 0 | enable_responses: 0 | swm_mxq: 0 ignore_buffers: 1 for this tst 0x2aaab92b0000
+process_id: 0 using swm_seed: 2006775854 for common_seed, unique_seed is: 2006775854
+app_name: archbench_trace
+endpt_id: 0 using probability: 1
+item: ${ws
+after erasing job_size: 128
+after erasing: 1
+after erasing DP: 128
+item: ber
+item: enc
+item: s512.json
+found_mp_in_name: 1 MP = 1
+found_dp_in_name: 1 DP = 128
+found_size: 1 job_size: 128
+mp_comm_group: 0
+BeginList 
+0,END of List
+adding process_ids to new comm_grp_id: 0 | new_size: 2 | my_proc_id: 0
+mp_comm_group: 1
+BeginList 
+1,END of List
+adding process_ids to new comm_grp_id: 1 | new_size: 3 | my_proc_id: 0
+mp_comm_group: 2
+BeginList 
+2,END of List
+adding process_ids to new comm_grp_id: 2 | new_size: 4 | my_proc_id: 0
+mp_comm_group: 3
+BeginList 
+3,END of List
+adding process_ids to new comm_grp_id: 3 | new_size: 5 | my_proc_id: 0
+mp_comm_group: 4
+BeginList 
+4,END of List
+adding process_ids to new comm_grp_id: 4 | new_size: 6 | my_proc_id: 0
+mp_comm_group: 5
+BeginList 
+5,END of List
+adding process_ids to new comm_grp_id: 5 | new_size: 7 | my_proc_id: 0
+mp_comm_group: 6
+BeginList 
+6,END of List
+adding process_ids to new comm_grp_id: 6 | new_size: 8 | my_proc_id: 0
+mp_comm_group: 7
+BeginList 
+7,END of List
+adding process_ids to new comm_grp_id: 7 | new_size: 9 | my_proc_id: 0
+mp_comm_group: 8
+BeginList 
+8,END of List
+adding process_ids to new comm_grp_id: 8 | new_size: 10 | my_proc_id: 0
+mp_comm_group: 9
+BeginList 
+9,END of List
+adding process_ids to new comm_grp_id: 9 | new_size: 11 | my_proc_id: 0
+mp_comm_group: 10
+BeginList 
+10,END of List
+adding process_ids to new comm_grp_id: 10 | new_size: 12 | my_proc_id: 0
+mp_comm_group: 11
+BeginList 
+11,END of List
+adding process_ids to new comm_grp_id: 11 | new_size: 13 | my_proc_id: 0
+mp_comm_group: 12
+BeginList 
+12,END of List
+adding process_ids to new comm_grp_id: 12 | new_size: 14 | my_proc_id: 0
+mp_comm_group: 13
+BeginList 
+13,END of List
+adding process_ids to new comm_grp_id: 13 | new_size: 15 | my_proc_id: 0
+mp_comm_group: 14
+BeginList 
+14,END of List
+adding process_ids to new comm_grp_id: 14 | new_size: 16 | my_proc_id: 0
+mp_comm_group: 15
+BeginList 
+15,END of List
+adding process_ids to new comm_grp_id: 15 | new_size: 17 | my_proc_id: 0
+mp_comm_group: 16
+BeginList 
+16,END of List
+adding process_ids to new comm_grp_id: 16 | new_size: 18 | my_proc_id: 0
+mp_comm_group: 17
+BeginList 
+17,END of List
+adding process_ids to new comm_grp_id: 17 | new_size: 19 | my_proc_id: 0
+mp_comm_group: 18
+BeginList 
+18,END of List
+adding process_ids to new comm_grp_id: 18 | new_size: 20 | my_proc_id: 0
+mp_comm_group: 19
+BeginList 
+19,END of List
+adding process_ids to new comm_grp_id: 19 | new_size: 21 | my_proc_id: 0
+mp_comm_group: 20
+BeginList 
+20,END of List
+adding process_ids to new comm_grp_id: 20 | new_size: 22 | my_proc_id: 0
+mp_comm_group: 21
+BeginList 
+21,END of List
+adding process_ids to new comm_grp_id: 21 | new_size: 23 | my_proc_id: 0
+mp_comm_group: 22
+BeginList 
+22,END of List
+adding process_ids to new comm_grp_id: 22 | new_size: 24 | my_proc_id: 0
+mp_comm_group: 23
+BeginList 
+23,END of List
+adding process_ids to new comm_grp_id: 23 | new_size: 25 | my_proc_id: 0
+mp_comm_group: 24
+BeginList 
+24,END of List
+adding process_ids to new comm_grp_id: 24 | new_size: 26 | my_proc_id: 0
+mp_comm_group: 25
+BeginList 
+25,END of List
+adding process_ids to new comm_grp_id: 25 | new_size: 27 | my_proc_id: 0
+mp_comm_group: 26
+BeginList 
+26,END of List
+adding process_ids to new comm_grp_id: 26 | new_size: 28 | my_proc_id: 0
+mp_comm_group: 27
+BeginList 
+27,END of List
+adding process_ids to new comm_grp_id: 27 | new_size: 29 | my_proc_id: 0
+mp_comm_group: 28
+BeginList 
+28,END of List
+adding process_ids to new comm_grp_id: 28 | new_size: 30 | my_proc_id: 0
+mp_comm_group: 29
+BeginList 
+29,END of List
+adding process_ids to new comm_grp_id: 29 | new_size: 31 | my_proc_id: 0
+mp_comm_group: 30
+BeginList 
+30,END of List
+adding process_ids to new comm_grp_id: 30 | new_size: 32 | my_proc_id: 0
+mp_comm_group: 31
+BeginList 
+31,END of List
+adding process_ids to new comm_grp_id: 31 | new_size: 33 | my_proc_id: 0
+mp_comm_group: 32
+BeginList 
+32,END of List
+adding process_ids to new comm_grp_id: 32 | new_size: 34 | my_proc_id: 0
+mp_comm_group: 33
+BeginList 
+33,END of List
+adding process_ids to new comm_grp_id: 33 | new_size: 35 | my_proc_id: 0
+mp_comm_group: 34
+BeginList 
+34,END of List
+adding process_ids to new comm_grp_id: 34 | new_size: 36 | my_proc_id: 0
+mp_comm_group: 35
+BeginList 
+35,END of List
+adding process_ids to new comm_grp_id: 35 | new_size: 37 | my_proc_id: 0
+mp_comm_group: 36
+BeginList 
+36,END of List
+adding process_ids to new comm_grp_id: 36 | new_size: 38 | my_proc_id: 0
+mp_comm_group: 37
+BeginList 
+37,END of List
+adding process_ids to new comm_grp_id: 37 | new_size: 39 | my_proc_id: 0
+mp_comm_group: 38
+BeginList 
+38,END of List
+adding process_ids to new comm_grp_id: 38 | new_size: 40 | my_proc_id: 0
+mp_comm_group: 39
+BeginList 
+39,END of List
+adding process_ids to new comm_grp_id: 39 | new_size: 41 | my_proc_id: 0
+mp_comm_group: 40
+BeginList 
+40,END of List
+adding process_ids to new comm_grp_id: 40 | new_size: 42 | my_proc_id: 0
+mp_comm_group: 41
+BeginList 
+41,END of List
+adding process_ids to new comm_grp_id: 41 | new_size: 43 | my_proc_id: 0
+mp_comm_group: 42
+BeginList 
+42,END of List
+adding process_ids to new comm_grp_id: 42 | new_size: 44 | my_proc_id: 0
+mp_comm_group: 43
+BeginList 
+43,END of List
+adding process_ids to new comm_grp_id: 43 | new_size: 45 | my_proc_id: 0
+mp_comm_group: 44
+BeginList 
+44,END of List
+adding process_ids to new comm_grp_id: 44 | new_size: 46 | my_proc_id: 0
+mp_comm_group: 45
+BeginList 
+45,END of List
+adding process_ids to new comm_grp_id: 45 | new_size: 47 | my_proc_id: 0
+mp_comm_group: 46
+BeginList 
+46,END of List
+adding process_ids to new comm_grp_id: 46 | new_size: 48 | my_proc_id: 0
+mp_comm_group: 47
+BeginList 
+47,END of List
+adding process_ids to new comm_grp_id: 47 | new_size: 49 | my_proc_id: 0
+mp_comm_group: 48
+BeginList 
+48,END of List
+adding process_ids to new comm_grp_id: 48 | new_size: 50 | my_proc_id: 0
+mp_comm_group: 49
+BeginList 
+49,END of List
+adding process_ids to new comm_grp_id: 49 | new_size: 51 | my_proc_id: 0
+mp_comm_group: 50
+BeginList 
+50,END of List
+adding process_ids to new comm_grp_id: 50 | new_size: 52 | my_proc_id: 0
+mp_comm_group: 51
+BeginList 
+51,END of List
+adding process_ids to new comm_grp_id: 51 | new_size: 53 | my_proc_id: 0
+mp_comm_group: 52
+BeginList 
+52,END of List
+adding process_ids to new comm_grp_id: 52 | new_size: 54 | my_proc_id: 0
+mp_comm_group: 53
+BeginList 
+53,END of List
+adding process_ids to new comm_grp_id: 53 | new_size: 55 | my_proc_id: 0
+mp_comm_group: 54
+BeginList 
+54,END of List
+adding process_ids to new comm_grp_id: 54 | new_size: 56 | my_proc_id: 0
+mp_comm_group: 55
+BeginList 
+55,END of List
+adding process_ids to new comm_grp_id: 55 | new_size: 57 | my_proc_id: 0
+mp_comm_group: 56
+BeginList 
+56,END of List
+adding process_ids to new comm_grp_id: 56 | new_size: 58 | my_proc_id: 0
+mp_comm_group: 57
+BeginList 
+57,END of List
+adding process_ids to new comm_grp_id: 57 | new_size: 59 | my_proc_id: 0
+mp_comm_group: 58
+BeginList 
+58,END of List
+adding process_ids to new comm_grp_id: 58 | new_size: 60 | my_proc_id: 0
+mp_comm_group: 59
+BeginList 
+59,END of List
+adding process_ids to new comm_grp_id: 59 | new_size: 61 | my_proc_id: 0
+mp_comm_group: 60
+BeginList 
+60,END of List
+adding process_ids to new comm_grp_id: 60 | new_size: 62 | my_proc_id: 0
+mp_comm_group: 61
+BeginList 
+61,END of List
+adding process_ids to new comm_grp_id: 61 | new_size: 63 | my_proc_id: 0
+mp_comm_group: 62
+BeginList 
+62,END of List
+adding process_ids to new comm_grp_id: 62 | new_size: 64 | my_proc_id: 0
+mp_comm_group: 63
+BeginList 
+63,END of List
+adding process_ids to new comm_grp_id: 63 | new_size: 65 | my_proc_id: 0
+mp_comm_group: 64
+BeginList 
+64,END of List
+adding process_ids to new comm_grp_id: 64 | new_size: 66 | my_proc_id: 0
+mp_comm_group: 65
+BeginList 
+65,END of List
+adding process_ids to new comm_grp_id: 65 | new_size: 67 | my_proc_id: 0
+mp_comm_group: 66
+BeginList 
+66,END of List
+adding process_ids to new comm_grp_id: 66 | new_size: 68 | my_proc_id: 0
+mp_comm_group: 67
+BeginList 
+67,END of List
+adding process_ids to new comm_grp_id: 67 | new_size: 69 | my_proc_id: 0
+mp_comm_group: 68
+BeginList 
+68,END of List
+adding process_ids to new comm_grp_id: 68 | new_size: 70 | my_proc_id: 0
+mp_comm_group: 69
+BeginList 
+69,END of List
+adding process_ids to new comm_grp_id: 69 | new_size: 71 | my_proc_id: 0
+mp_comm_group: 70
+BeginList 
+70,END of List
+adding process_ids to new comm_grp_id: 70 | new_size: 72 | my_proc_id: 0
+mp_comm_group: 71
+BeginList 
+71,END of List
+adding process_ids to new comm_grp_id: 71 | new_size: 73 | my_proc_id: 0
+mp_comm_group: 72
+BeginList 
+72,END of List
+adding process_ids to new comm_grp_id: 72 | new_size: 74 | my_proc_id: 0
+mp_comm_group: 73
+BeginList 
+73,END of List
+adding process_ids to new comm_grp_id: 73 | new_size: 75 | my_proc_id: 0
+mp_comm_group: 74
+BeginList 
+74,END of List
+adding process_ids to new comm_grp_id: 74 | new_size: 76 | my_proc_id: 0
+mp_comm_group: 75
+BeginList 
+75,END of List
+adding process_ids to new comm_grp_id: 75 | new_size: 77 | my_proc_id: 0
+mp_comm_group: 76
+BeginList 
+76,END of List
+adding process_ids to new comm_grp_id: 76 | new_size: 78 | my_proc_id: 0
+mp_comm_group: 77
+BeginList 
+77,END of List
+adding process_ids to new comm_grp_id: 77 | new_size: 79 | my_proc_id: 0
+mp_comm_group: 78
+BeginList 
+78,END of List
+adding process_ids to new comm_grp_id: 78 | new_size: 80 | my_proc_id: 0
+mp_comm_group: 79
+BeginList 
+79,END of List
+adding process_ids to new comm_grp_id: 79 | new_size: 81 | my_proc_id: 0
+mp_comm_group: 80
+BeginList 
+80,END of List
+adding process_ids to new comm_grp_id: 80 | new_size: 82 | my_proc_id: 0
+mp_comm_group: 81
+BeginList 
+81,END of List
+adding process_ids to new comm_grp_id: 81 | new_size: 83 | my_proc_id: 0
+mp_comm_group: 82
+BeginList 
+82,END of List
+adding process_ids to new comm_grp_id: 82 | new_size: 84 | my_proc_id: 0
+mp_comm_group: 83
+BeginList 
+83,END of List
+adding process_ids to new comm_grp_id: 83 | new_size: 85 | my_proc_id: 0
+mp_comm_group: 84
+BeginList 
+84,END of List
+adding process_ids to new comm_grp_id: 84 | new_size: 86 | my_proc_id: 0
+mp_comm_group: 85
+BeginList 
+85,END of List
+adding process_ids to new comm_grp_id: 85 | new_size: 87 | my_proc_id: 0
+mp_comm_group: 86
+BeginList 
+86,END of List
+adding process_ids to new comm_grp_id: 86 | new_size: 88 | my_proc_id: 0
+mp_comm_group: 87
+BeginList 
+87,END of List
+adding process_ids to new comm_grp_id: 87 | new_size: 89 | my_proc_id: 0
+mp_comm_group: 88
+BeginList 
+88,END of List
+adding process_ids to new comm_grp_id: 88 | new_size: 90 | my_proc_id: 0
+mp_comm_group: 89
+BeginList 
+89,END of List
+adding process_ids to new comm_grp_id: 89 | new_size: 91 | my_proc_id: 0
+mp_comm_group: 90
+BeginList 
+90,END of List
+adding process_ids to new comm_grp_id: 90 | new_size: 92 | my_proc_id: 0
+mp_comm_group: 91
+BeginList 
+91,END of List
+adding process_ids to new comm_grp_id: 91 | new_size: 93 | my_proc_id: 0
+mp_comm_group: 92
+BeginList 
+92,END of List
+adding process_ids to new comm_grp_id: 92 | new_size: 94 | my_proc_id: 0
+mp_comm_group: 93
+BeginList 
+93,END of List
+adding process_ids to new comm_grp_id: 93 | new_size: 95 | my_proc_id: 0
+mp_comm_group: 94
+BeginList 
+94,END of List
+adding process_ids to new comm_grp_id: 94 | new_size: 96 | my_proc_id: 0
+mp_comm_group: 95
+BeginList 
+95,END of List
+adding process_ids to new comm_grp_id: 95 | new_size: 97 | my_proc_id: 0
+mp_comm_group: 96
+BeginList 
+96,END of List
+adding process_ids to new comm_grp_id: 96 | new_size: 98 | my_proc_id: 0
+mp_comm_group: 97
+BeginList 
+97,END of List
+adding process_ids to new comm_grp_id: 97 | new_size: 99 | my_proc_id: 0
+mp_comm_group: 98
+BeginList 
+98,END of List
+adding process_ids to new comm_grp_id: 98 | new_size: 100 | my_proc_id: 0
+mp_comm_group: 99
+BeginList 
+99,END of List
+adding process_ids to new comm_grp_id: 99 | new_size: 101 | my_proc_id: 0
+mp_comm_group: 100
+BeginList 
+100,END of List
+adding process_ids to new comm_grp_id: 100 | new_size: 102 | my_proc_id: 0
+mp_comm_group: 101
+BeginList 
+101,END of List
+adding process_ids to new comm_grp_id: 101 | new_size: 103 | my_proc_id: 0
+mp_comm_group: 102
+BeginList 
+102,END of List
+adding process_ids to new comm_grp_id: 102 | new_size: 104 | my_proc_id: 0
+mp_comm_group: 103
+BeginList 
+103,END of List
+adding process_ids to new comm_grp_id: 103 | new_size: 105 | my_proc_id: 0
+mp_comm_group: 104
+BeginList 
+104,END of List
+adding process_ids to new comm_grp_id: 104 | new_size: 106 | my_proc_id: 0
+mp_comm_group: 105
+BeginList 
+105,END of List
+adding process_ids to new comm_grp_id: 105 | new_size: 107 | my_proc_id: 0
+mp_comm_group: 106
+BeginList 
+106,END of List
+adding process_ids to new comm_grp_id: 106 | new_size: 108 | my_proc_id: 0
+mp_comm_group: 107
+BeginList 
+107,END of List
+adding process_ids to new comm_grp_id: 107 | new_size: 109 | my_proc_id: 0
+mp_comm_group: 108
+BeginList 
+108,END of List
+adding process_ids to new comm_grp_id: 108 | new_size: 110 | my_proc_id: 0
+mp_comm_group: 109
+BeginList 
+109,END of List
+adding process_ids to new comm_grp_id: 109 | new_size: 111 | my_proc_id: 0
+mp_comm_group: 110
+BeginList 
+110,END of List
+adding process_ids to new comm_grp_id: 110 | new_size: 112 | my_proc_id: 0
+mp_comm_group: 111
+BeginList 
+111,END of List
+adding process_ids to new comm_grp_id: 111 | new_size: 113 | my_proc_id: 0
+mp_comm_group: 112
+BeginList 
+112,END of List
+adding process_ids to new comm_grp_id: 112 | new_size: 114 | my_proc_id: 0
+mp_comm_group: 113
+BeginList 
+113,END of List
+adding process_ids to new comm_grp_id: 113 | new_size: 115 | my_proc_id: 0
+mp_comm_group: 114
+BeginList 
+114,END of List
+adding process_ids to new comm_grp_id: 114 | new_size: 116 | my_proc_id: 0
+mp_comm_group: 115
+BeginList 
+115,END of List
+adding process_ids to new comm_grp_id: 115 | new_size: 117 | my_proc_id: 0
+mp_comm_group: 116
+BeginList 
+116,END of List
+adding process_ids to new comm_grp_id: 116 | new_size: 118 | my_proc_id: 0
+mp_comm_group: 117
+BeginList 
+117,END of List
+adding process_ids to new comm_grp_id: 117 | new_size: 119 | my_proc_id: 0
+mp_comm_group: 118
+BeginList 
+118,END of List
+adding process_ids to new comm_grp_id: 118 | new_size: 120 | my_proc_id: 0
+mp_comm_group: 119
+BeginList 
+119,END of List
+adding process_ids to new comm_grp_id: 119 | new_size: 121 | my_proc_id: 0
+mp_comm_group: 120
+BeginList 
+120,END of List
+adding process_ids to new comm_grp_id: 120 | new_size: 122 | my_proc_id: 0
+mp_comm_group: 121
+BeginList 
+121,END of List
+adding process_ids to new comm_grp_id: 121 | new_size: 123 | my_proc_id: 0
+mp_comm_group: 122
+BeginList 
+122,END of List
+adding process_ids to new comm_grp_id: 122 | new_size: 124 | my_proc_id: 0
+mp_comm_group: 123
+BeginList 
+123,END of List
+adding process_ids to new comm_grp_id: 123 | new_size: 125 | my_proc_id: 0
+mp_comm_group: 124
+BeginList 
+124,END of List
+adding process_ids to new comm_grp_id: 124 | new_size: 126 | my_proc_id: 0
+mp_comm_group: 125
+BeginList 
+125,END of List
+adding process_ids to new comm_grp_id: 125 | new_size: 127 | my_proc_id: 0
+mp_comm_group: 126
+BeginList 
+126,END of List
+adding process_ids to new comm_grp_id: 126 | new_size: 128 | my_proc_id: 0
+mp_comm_group: 127
+BeginList 
+127,END of List
+adding process_ids to new comm_grp_id: 127 | new_size: 129 | my_proc_id: 0
+dp_comm_group: 128
+BeginList 
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,END of List
+adding process_ids to new comm_grp_id: 128 | new_size: 130 | my_proc_id: 0
+process_id: 0 parsing layer: 0
+Pass = fwd
+LayerNum = 2
+ASSERT(../apps/deep_learning/archbench_trace/archbench_trace_swm_user_code.cpp:678): (std::stoi(temp) == num_layers) -- num_layers: 0 | temp: 2
+
+[scc064002:28392] *** Process received signal ***
+[scc064002:28392] Signal: Aborted (6)
+[scc064002:28392] Signal code:  (-6)
+[scc064002:28392] [ 0] /lib64/libpthread.so.0(+0xf850)[0x2aaaacea3850]
+[scc064002:28392] [ 1] /lib64/libc.so.6(gsignal+0x35)[0x2aaaad0e4875]
+[scc064002:28392] [ 2] /lib64/libc.so.6(abort+0x181)[0x2aaaad0e5e51]
+[scc064002:28392] [ 3] /nfs/sc/disks/slx_1083/aneriach/workspaces/my_fabsim-workspacess/fabsim//apps/dll/archbench_trace.so(_ZN25ArchBenchTraceSWMUserCode14parseJsonFile2Ev+0x12c3)[0x2aaabbe9a5b3]
+[scc064002:28392] [ 4] /nfs/sc/disks/slx_1083/aneriach/workspaces/my_fabsim-workspacess/fabsim//apps/dll/archbench_trace.so(_ZN25ArchBenchTraceSWMUserCodeC2EP9SWMUserIFN5boost13property_tree11basic_ptreeINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESA_St4lessISA_EEERPPv+0x15f7)[0x2aaabbe9c127]
+[scc064002:28392] [ 5] /nfs/sc/disks/slx_1083/aneriach/workspaces/my_fabsim-workspacess/fabsim//apps/dll/archbench_trace.so(dll_create+0x39)[0x2aaabbe9cd99]
+[scc064002:28392] [ 6] /nfs/sc/disks/slx_1083/aneriach/workspaces/my_fabsim-workspacess/build/fabsim-x(_ZN10SWMProcessC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEjjjjP27SWMCommunicatorGroupManagerP15SWMMagicManagerPvSA_RN5boost13property_tree11basic_ptreeIS5_S5_St4lessIS5_EEESH_P20SWMProcessConsumerIFRPSA_P17SWMTopologyUserIFP22SWMWorkloadSchedulerIFP11FabsimRNGIFP8SWMMPIIFb+0xb84)[0x6fc344]
+[scc064002:28392] [ 7] /nfs/sc/disks/slx_1083/aneriach/workspaces/my_fabsim-workspacess/build/fabsim-x(_ZN17WorkloadScheduler7InitAppER3Job+0x372c)[0x69761c]
+[scc064002:28392] [ 8] /nfs/sc/disks/slx_1083/aneriach/workspaces/my_fabsim-workspacess/build/fabsim-x(_ZN19WorkloadSchedulerIF5ClockEm+0x5f1)[0x690841]
+[scc064002:28392] [ 9] /nfs/sc/disks/slx_1083/aneriach/workspaces/my_fabsim-workspacess/build/fabsim-x(_ZN10EventQueue8simulateEb+0x5d9)[0x5cbd89]
+[scc064002:28392] [10] /nfs/sc/disks/slx_1083/aneriach/workspaces/my_fabsim-workspacess/build/fabsim-x(main+0x24cf)[0x504ebf]
+[scc064002:28392] [11] /lib64/libc.so.6(__libc_start_main+0xe6)[0x2aaaad0d0c36]
+[scc064002:28392] [12] /nfs/sc/disks/slx_1083/aneriach/workspaces/my_fabsim-workspacess/build/fabsim-x[0x558391]
+[scc064002:28392] *** End of error message ***
+./run_simulation.sh: line 35: 28392 Aborted                 /nfs/sc/disks/slx_1083/aneriach/workspaces/my_fabsim-workspacess/build/fabsim-x -j general.json -j clock_domains.json -j topology.json -j tree_routing.json -j hashing.json -j flow_control.json -j TcpNewReno.json -j TcpDCTCP.json -j DCQCN.json -j node.json -j hfi.json -j switch.json -j oq_switch.json -j job.json -j stats.json -j offered_load.json -j credits.json -j steady_state.json
++-----------------------------------------------------------------------------+
+| Exit Status    : 134                                                        |
+| Finishing time : Fri Dec 11 04:34:25 2020                                   |
+| CPU time       : Usr 0.184s  Sys 0.128s  WC  0h:00m:02s                     |
+| Rusage Stats   : Mem:0      PF:  0/0       CSv/f:  0/0     Swaps:0          |
+|                :           Msg:    0/0     IOops:  0/0     Sigs :0          |
++-----------------------------------------------------------------------------+

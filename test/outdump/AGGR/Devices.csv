@@ -1,0 +1,3 @@
+name,relpath,cfgtype,skuname
+PVC1T-512-C0-85-80,test/outdump/AGGR/configs/GEN_PVC1T-512-C0-85-80.yaml,regular,PVC1T-512-C0-85-80
+PVC1T-512-C0-85-80-TF32,test/outdump/AGGR/configs/GEN_PVC1T-512-C0-85-80-TF32.yaml,tf32,PVC1T-512-C0-85-80

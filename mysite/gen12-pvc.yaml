@@ -1,0 +1,175 @@
+# Simulator parameters for the performance model
+Device:
+    name            : PVC GEN12
+    base_arch       : "GEN"                       # base architecture must be either "GEN" or "VPU"
+    compEff         : 1.0                           # default hardware efficiency for layers. Overriden by those provided from hardware team.
+    deviceFreq      : [1500]                        # list - device frequencies
+    numUnits        : [64]                        # list - no of DPUs or EUs
+    dPrecision      : [2]                           # list - activation precison in bytes
+    wPrecision      : [2]                           # list - weight precision in bytes
+    tensor_order    : 'x_major'                     # DO-NOT-MODIFY - for Tensor Layout; tensor order could be x_major, y_major or z_major
+
+    enable_pipeline : 0                                 # DO-NOT-MODIFY - enable for pipelined execution
+    pl_layer_list   : [["Conv", "Relu"],
+                        ["Conv", "Concat"],
+                        ["Conv", "ParametricRelu"],
+                        ["Conv", "SoftMax"],
+                        ["Conv", "Permute"],
+                        ["Conv", "Flatten"],
+                        ["Conv", "PriorBox"],
+                        ["SoftMax", "Flatten"],
+                        ["InnerProduct", "SoftMax"],
+                        ["Conv",  "BatchNorm"],          # DO-NOT-MODIFY - Fused layers to be ignored during performance calculation, To-do- add sanity check to confirm layers are added to async operations
+                        ["Conv",   "Scale"],
+                        ["DWConv", "BatchNorm"],
+                        ["DWConv", "Scale"],
+                        ["BatchNorm", "Scale"],
+                        ["Scale", "BatchNorm"],
+                        ["ReLU", "Dropout"],
+                        ["Concat", "Dropout"],
+                        ["Pool", "Dropout"]]
+
+    enable_fusion   : 0                                 # DO-NOT-MODIFY - enable for fused execution
+    fuse_layer_list : []
+
+
+    # ----------------
+    # Compression Spec
+    # ----------------
+    actCompression          : [1.0] # Activation compression (1.0=100% aka no activation compression reduction)
+    wtCompression           : [1.0] # Weight compression reduction (1.0=100% aka no weight compression reduction)
+    param_sparsity          : [1]     # Default parameter sparsity reduction, overriden if layerwise sparsity present, 1=100% (no
+    act_sparsity            : [1]     # Default activation sparsity, overriden if layerwise sparsity present
+    compression_loss        : 0     # Loss factor in compression due to stacking regular compression with sparse compression
+                                    # So final size = original size * compression * sparse_compression * (1+compression loss)
+                                    # for no loss, specify this parameter as 0
+    # -----------
+    # IP Specific Parameters
+    # -----------
+    # TODO (melmalak): IP interface in GEN seems to be not duplex
+    ip_rd_width : [1024]      # List - IP Read Bus Width in Bytes.
+    ip_wr_width : [1024]      # List - IP Write Bus Width in Bytes.
+
+    # -----------
+    # Memory Spec
+    # -----------
+    ddr_bw      : [1638.4]   # DDR Memory Bandwidth in GB/Sec, assumes BW is shared between Rd/Wr.
+    ddr_derate  : 0.675 # DDR efficiency - 0.9 * 0.75
+
+    # -----------
+    # Caching Spec
+    # -----------
+    # Bandwidth to Cache bpck = byte/clock, pdss = per DSS
+    # For GEN it is EU->L3
+    l3_cache_rd_bpck_pdss: 64 # In GEN case the gti_rd_bpck
+    l3_cache_wr_bpck_pdss: 48 # In GEN case the gti_wr_bpck
+
+    cacheOption     : ['FS','FSPS']                 # list - Caching mechanism - 'FS' - full storage, 'FSPS' - Partial storage
+    cacheSizes      : [[200]]                       # list of lists - Cache sizes (MB) - insert comma separated inside [] for multi level cache [reports generated for 1st level].
+    cacheRwRatio    : 0.5                           # DO-NOT-MODIFY - portion of cache split between read/write
+
+    # ----------------------------
+    # Parameters defining Batching
+    # ----------------------------
+    maxBatch     : 64                  # The highest power of 2 batch size to model (will sim all smaller values from 1).
+    layerBatches : 32                   # number of batches to loop through for layer statistics [this will not affect use case statistics]
+
+    # --------------------------
+    # User Preference Parameters
+    # --------------------------
+    csvEnb            : 1                      # Enable CSV file generation
+    outFilePath       : './results/results-gen12-pvc'  # Output path/dir name where reports are placed
+    deepBenchCSV      : 0                      # generate csv for input to Deep Bench
+    perLayerCSV       : 0                      # generate csv for input to RTL
+    dynamic_batching  : 1                      # enable variable batching to select best batch
+    warningEnb        : 0                      # enable warnings to be printed to the
+    cache_debug       : 1                      # Output detailed Cache Cycles
+
+    #####DO NOT MODIFY #####
+    tensorSplitChunkSize    : 4         # chunk size to which tensor is split and stored * 1000, - 4K chunks
+    ######END#################
+
+    enable_tiling: False
+    layer_ramp_cycles: 3000
+
+GenEngine:
+  type: compute
+  name: Execution Engine
+  compute:
+    # Table is Operation -> Byte Per Element (BPE) -> Ops/Cycle
+    # EU = 2 FPU, Each FPU is a SIMD-4 Machine
+    # FP64 and transdentals go on only one FPU
+    # Scale from FP16 to INT4 is linear
+    # Systolic factor counted separately
+    # Assumption is FP16 Ops/Cycle = BF16 Ops/Cycle
+    # EltWise does not support < INT8
+    # Transdentals does not support < FP32
+    # mac:     {0.5: 8 * 8, 1: 8 * 4,  2: 8 * 2,  4: 8,   8: 4}
+    # mul:     {            1: 8 * 4,  2: 8 * 2,  4: 8,   8: 4}
+    # add:     {            1: 8 * 4,  2: 8 * 2,  4: 8,   8: 4}
+    # sigmoid: {                                  4: 2/3, 8: 2/30}
+    # tanh:    {                                  4: 2/3, 8: 2/30}
+    # softmax: {                                  4: 2/3, 8: 2/30}
+
+    # TODO (melmalak): Table above is correct representation, hack for now to
+    # repeat Ops for unsupported data types, then later on fix in code
+    pipelines: {
+        systolic:   {0.5: 8 * 8, 1: 8 * 4,  2: 8 * 2,  4: 8,   8: 4},
+        fpu:        {0.5: 8 * 4, 1: 8 * 4,  2: 8 * 2,  4: 8,   8: 4},
+        integer:    {0.5: 8 * 4, 1: 8 * 4,  2: 8 * 2,  4: 8,   8: 4},
+        send:       {0.5: 8 * 4, 1: 8 * 4,  2: 8 * 2,  4: 8,   8: 4},
+        math:       {0.5: 8,     1: 8,      2: 4,      4: 2,   8: 1}
+    }
+
+    pipeline_map: {
+        fpu:        {all: ['mult', 'add', 'div', 'cmp', 'rnd', 'min', 'max', 'clamp'], 4: ['mac'], 8: ['mac']},
+        integer:    {all: ['mov', 'bitw']},
+        systolic:   {0.5: ['mac'], 1: ['mac'], 2: ['mac']},
+        math:       {all: ['sigmoid', 'exp', 'tanh', 'sqrt', 'log']},
+        send:       {all: ['load', 'store', 'load_store']}
+    }
+
+    # BPE -> Depth
+    systolic_depth: {0.5: 8, 1: 8, 2: 8, 4: 1} # In GEN case sys_depth_int8/sys_depth_bf16
+
+    # Compute Efficiency
+    # Fixed number for now, need to reiterate based on GEMM organization
+    eff: 0.8 # For GEN - EU Efficiency
+
+  # Mapping all layers to the EU
+  Layers: ["Conv", "Deconv", "Pool", "PoolOverlap", "DWConv",
+           "LRN", "InnerProduct", "Embed", "SPP",
+           "Flatten", "im2col", "Concat", "Reshape",
+           "Splitting", "Slicing", "Gather", "Transpose",
+           "Crop", "topK", "Broadcast", "Tile", "Reduction",
+           "Permute", "ReOrg", "PriorBox",  "Interp",
+           "InterpICV", "Upsample", "BatchNorm", "EltWise",
+           "Scale", "Threshold", "Mul", "ROIPooling", "ROIAlign",
+           "ArgMax", "Bias", "MVNorm", "Add",
+           "L2Norm", "DetectionOutput", "YoloRegion",
+           "Relu", "LeakyRelu", "ParametricRelu", "Tanh",
+           "Sigmoid", "SoftMax", "ELU", "AbsVal", "Power",
+           "Exp", "Log", "Unsqueeze", "PixelShuffler",
+           "Dense", "MatMul", "LayerNorm", "HardSwish", "HardSigmoid", "Relu6", "Swish",
+           "Gelu", "Dropout", "Identity", "Silence",
+    "GatherFromTensor", "Squeeze", "LSTM"]
+
+  # Setting to 1x1x1x1 -> disable tiling efficincy until we implement a model
+  tile: [[1,1,1,1]] # Execution 4D tile in [output_w, output_h, output_ch, input_ch]
+
+  numEUs : 16
+
+  # -----------
+  # DSS Memory Spec
+  # -----------
+  # bpck = bytes/clock
+  l1_cache_rd_bpck: 512
+  l1_cache_wr_bpck: 48
+  slm_rd_bpck: 256
+  slm_wr_bpck: 128
+
+  use_slm: False
+  threads_per_eu: 4
+
+  # Means in DSS so multiplies by number of units (VPU stuff that needs to be renamed)
+  inumUnits: 1

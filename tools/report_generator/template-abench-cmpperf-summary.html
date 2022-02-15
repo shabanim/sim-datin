@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title> Summary: Comparison of ArchBench Performance Reports </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ArchBench Performance Analysis">
+  <meta name="author" content="Samvit Kaul;Jesse Krigelman">
+
+  <!-- JQUERY -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- GOOGLE VISUALIZATION -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+  <div class="container-fluid"> <!-- toplevel container -->
+    <div class="row-fluid"> <!-- toplevel-1 -->
+    <h1><center>Comparison of ArchBench Performance Reports: Summary</center></h1>
+
+    <h2> Information </h2>
+    <table class="table table-striped table-bordered">
+        <thead><th scope="col">Attribute</th><th scope="col">Value</th></thead>
+        <tbody>
+        <th scope="row">dir1</th><td>{{dir1name}}</td></tr>
+        <th scope="row">dir2</th><td>{{dir2name}}</td></tr>
+        <th scope="row">Error Bar</th><td>{{epsilon_str}}</td></tr>
+        </tbody>
+    </table>
+
+    <HR>
+    <h1> Summary Table </h2>
+    <div id="inference-stat-title-div"></div>
+    <div id="inference-stat-dashboard-div">
+        <div id="inference-stat-filter-div"></div><br>
+        <div id="inference-stat-tbl-div"></div>
+    </div>
+
+    <script>
+        var categories = {{categories}};
+        var filters = {{filters}};
+
+        for(var name of categories) {
+            document.body.appendChild(document.createElement("HR"));
+            h2 = document.createElement('h2');
+            h2.innerHTML = name + ' Comparison Summary';
+            document.body.appendChild(h2);
+            title = document.createElement('div');
+            title.id = name + '-summary-title-div';
+            document.body.appendChild(title);
+            dashboard = document.createElement('div');
+            dashboard.id = name + '-summary-dashboard-div';
+            document.body.appendChild(dashboard);
+            for(var filter of filters[name]){
+                filterdiv = document.createElement('div');
+                filterdiv.id = name + '-summary-filter-' + filter + '-div';
+                dashboard.appendChild(filterdiv);
+            }
+            table = document.createElement('div');
+            table.id = name + '-summary-tbl-div';
+            dashboard.appendChild(table);
+        }
+
+        google.charts.load("current", {packages:["corechart", "table", "controls"]});
+        google.charts.setOnLoadCallback(drawTable); 
+
+        function drawTable() {
+            var summary_table = {{summary_table}}   
+            var tblChartOptions = {
+                'allowHtml'     : true,
+                'showRowNumber' : true,
+                'page'          : 'enable',
+                'pageSize'      : 25,
+            };
+            var uioptions = {
+                'labelStacking'       : 'vertical',
+                'selectedValuesLayout': 'belowStacked'
+            };
+            var uioptions_ratio = {
+                'labelStacking'       : 'vertical',
+                'selectedValuesLayout': 'belowStacked',
+                'minValue'            : 0.0,
+                'maxValue'            : 1.0,
+                'unitIncrement'       : 0.01,
+                'blockIncrement'      : 0.1,
+            };
+            var percentFormat    = new google.visualization.NumberFormat({fractionDigits: 4, suffix: "%"});
+            var noDecimalFormat  = new google.visualization.NumberFormat({fractionDigits: 0});
+            var twoDecimalFormat = new google.visualization.NumberFormat({fractionDigits: 2});
+            var highlightFormat  = new google.visualization.ColorFormat();
+            var arrowFormat      = new google.visualization.ArrowFormat();
+            highlightFormat.addRange({{below_error_bar}},'white','red');
+            highlightFormat.addRange({{error_bar}},'white','green');
+            highlightFormat.addRange({{above_error_bar}},'white','red');
+            {
+                var inferenceFilters = {{filter_desc}};
+                var filterstr = Array.from(Array(inferenceFilters.length).keys()).map(function(i){
+                    return '<div class="col-md-3" id="filter-' + i + '-div"></div>';
+                }).join('\n');
+                filterstr = '<div class="row">\n' + filterstr + '\n</div>\n';
+                document.getElementById('inference-stat-filter-div').innerHTML = filterstr;
+                filterObjs = [];
+                for(var i=0; i < inferenceFilters.length; i++){
+                    // var colname    = inferenceFilters[i][0];
+                    var colname = inferenceFilters[i][0];
+                    if (colname != 'Passed') {
+                        colname += ' Passed';
+                    }
+                    // var filtertype = inferenceFilters[i][1];
+                    var filtertype = 'CategoryFilter';
+                    var options    = uioptions;
+                    // if(filtertype == 'NumberRangeFilter'){
+                    //     colname = colname + ' Percentage Difference (%)';
+                    //     options = uioptions_ratio;
+                    // } else {
+                    //     colname = colname + ' (csv1)';
+                    //     options = uioptions;
+                    // }
+                    var filterdiv  = 'filter-' + i + '-div';
+                    filterObjs.push(new google.visualization.ControlWrapper({
+                        'controlType': filtertype,
+                        'containerId': filterdiv,
+                        'options': {
+                            'filterColumnLabel': colname,
+                            'ui': options
+                        }}));
+                }   
+                var inferenceChartOptions = tblChartOptions;
+                inferenceChartOptions['frozenColumns'] = {{frozenColumns}}; 
+                var cDashBoard  = new google.visualization.Dashboard(document.getElementById('inference-stat-dashboard-div'));
+                var cTableChart = new google.visualization.ChartWrapper({
+                    'chartType'  : 'Table',
+                    'containerId': 'inference-stat-tbl-div',
+                    'options'    : inferenceChartOptions
+                });
+                var inference_val_table = {{inference_table}};
+                var inferenceDataTable  = google.visualization.arrayToDataTable(inference_val_table,false); 
+                [{{percent_cols}}].map(function(c){{percentFormat.format(inferenceDataTable,c);}});
+                [{{numeric_cols}}].map(function(c){{twoDecimalFormat.format(inferenceDataTable,c);}});
+                [{{cmp_cols}}].map(function(c){{highlightFormat.format(inferenceDataTable,c);}});
+                [{{arrow_cols}}].map(function(c){{arrowFormat.format(inferenceDataTable,c);}});
+                cDashBoard.bind( filterObjs, cTableChart ).draw(inferenceDataTable);
+            
+                for(var name of categories) {
+                    var sDashBoard  = new google.visualization.Dashboard(document.getElementById(name + '-summary-dashboard-div'));
+                    var sTableChart = new google.visualization.ChartWrapper({
+                        'chartType'  : 'Table',
+                        'containerId': name + '-summary-tbl-div',
+                        'options'    : tblChartOptions
+                    }); 
+                    var filterOptions = [];
+                    for(var filter of filters[name]) {
+                        filterOptions.push(
+                            new google.visualization.ControlWrapper({
+                                'controlType': 'CategoryFilter',
+                                'containerId': name + '-summary-filter-' + filter + '-div',
+                                'options'    : {
+                                    'filterColumnLabel': filter,
+                                    'ui': uioptions
+                                }
+                            })
+                        );
+                    }
+                    var summary_val_table = summary_table[name];
+                    var summaryDataTable  = google.visualization.arrayToDataTable(summary_val_table,false);
+                    sDashBoard.bind(filterOptions, sTableChart).draw(summaryDataTable);
+                }
+            }
+        }
+    </script>
+    </div> <!-- toplevel-1 -->
+  </div> <!-- toplevel container -->
+</body>
+</html>

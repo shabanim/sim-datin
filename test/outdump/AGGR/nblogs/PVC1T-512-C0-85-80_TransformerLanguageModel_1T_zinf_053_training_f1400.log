@@ -1,0 +1,5 @@
+WARNING|network|2008|Add layer #19 encoder_att_out_res0 has 2 inputs but 1 bwd-d layers
+WARNING|network|2008|Add layer #25 encoder_ffn2_res0 has 2 inputs but 1 bwd-d layers
+script-dir in setup /home/sdg3/param/param_zero_inf_rebase/dl-modeling/ab-release-automation/smab
+Network: TransformerLanguageModel_1T.py
+Completed job in 1.4083183342590928

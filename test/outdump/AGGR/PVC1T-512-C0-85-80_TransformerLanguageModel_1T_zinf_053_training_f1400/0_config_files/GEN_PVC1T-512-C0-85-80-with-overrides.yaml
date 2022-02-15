@@ -1,0 +1,378 @@
+Device:
+  actCompression: [1.0]
+  act_compression_algo: null
+  act_sparsity: [1]
+  base_arch: GEN
+  batches: &id002 [1]
+  cacheLevels: 1
+  cacheOption: [FSPS]
+  cacheParamRatio: 0.0
+  cacheRwRatio: 0.9375
+  cacheSizes:
+  - [201326592]
+  cache_debug: 1
+  compress_at_l3: false
+  compression_loss: 0
+  csvEnb: 1
+  dPrecision: [2]
+  ddr_bw: [1105920000000.0]
+  ddr_derate: 0.675
+  deepBenchCSV: 0
+  deviceFreq: [1400000000]
+  device_obj:
+    engines:
+      Execution Engine: &id001
+        Layers: [Layer, Conv, Deconv, DWConv, Pool, LRN, InnerProduct, Embed, SPP,
+          Flatten, im2col, Concat, Reshape, ReverseSequence, SpaceToBatch, BatchToSpace,
+          Splitting, Slicing, Gather, Transpose, Crop, topK, Broadcast, Tile, Reduction,
+          Permute, ReOrg, PriorBox, Interp, InterpICV, Upsample, BatchNorm, EltWise,
+          Scale, Activate, Threshold, Mul, Activation, ArgMax, Bias, MVNorm, Add,
+          L2Norm, DetectionOutput, YoloRegion, Relu, LeakyRelu, ParametricRelu, Tanh,
+          Sigmoid, SoftMax, ELU, AbsVal, Embedding, NMS, PoolOverlap, Dropout, Power,
+          Exp, Log, Unsqueeze, PixelShuffler, Dense, MatMul, LayerNorm, Gelu, Identity,
+          ROIAlign, GatherFromTensor, ROIPooling, LSTM, ZeroPad, BeamSearch, Loss,
+          CrossEntropyLoss, Optimizer, SGDOptimizer, AdamOptimizer, Silence, HardSwish,
+          Squeeze, PriorBoxClustered, StridedSlice, NonMaxSuppression, Convert, ShapeOf,
+          ConvolutionBackpropData, Clamp, GroupConv, ReduceMean, QLinearConv, QuantizeLinear,
+          Dequantizelinear, Relu6, UpsampleInterp, TriangularIndices, Select, Interpolate,
+          Proposal, FakeQuantize, Pad, SpaceToDepth, OneHot, DepthToSpace, Erf, SeparableConv,
+          Div, And, Equal, Greater, Less, Swish, Min, Max, Embed_DLRM, Gradient, GradientConv,
+          GradientInnerProduct, GradientEmbed, GradientScale, GradientBias, GradientDense,
+          GradientMatMul, GradientDeconv, SingleOutputSlice, ConstantOfShape, Sqrt,
+          Resize, Expand, ConvTranspose, Cast, InstanceNormalization, EmbeddingBag,
+          GradientEmbeddingBag, Aggregate, SelectIndices]
+        bpe_table: [8, 4, 2, 1, 0.5]
+        compute:
+          eff: 0.6
+          pipeline_map:
+            fpu:
+              all: [mult, add, div, cmp, rnd, min, max, clamp]
+              4: [mac]
+              8: [mac]
+            integer:
+              all: [mov, bitw]
+            math:
+              all: [sigmoid, exp, tanh, sqrt, log]
+            send:
+              all: [load, store, load_store]
+            systolic:
+              0.5: [mac]
+              1: [mac]
+              2: [mac]
+          pipelines:
+            fpu: {0.5: 512, 1: 512, 2: 256, 4: 128.0, 8: 128.0}
+            integer: {0.5: 512, 1: 512, 2: 256, 4: 128, 8: 64}
+            math: {0.5: 32, 1: 32, 2: 32, 4: 32, 8: 16}
+            send: {0.5: 512, 1: 512, 2: 256, 4: 128, 8: 64}
+            systolic: {0.5: 8192, 1: 4096, 2: 2048, 4: 128.0, 8: 128.0}
+          systolic_depth: {0.5: 8, 1: 8, 2: 8, 4: 1, 8: 1}
+        flush_oversized_output_tensor: true
+        gen_tiler_1x1: {}
+        gen_tiler_3x3: {}
+        gen_tiler_7x7: {}
+        instruction_to_pipe:
+          0.5: {add: fpu, bitw: integer, clamp: fpu, cmp: fpu, div: fpu, exp: math,
+            load: send, load_store: send, log: math, mac: systolic, max: fpu, min: fpu,
+            mov: integer, mult: fpu, rnd: fpu, sigmoid: math, sqrt: math, store: send,
+            tanh: math}
+          1: {add: fpu, bitw: integer, clamp: fpu, cmp: fpu, div: fpu, exp: math,
+            load: send, load_store: send, log: math, mac: systolic, max: fpu, min: fpu,
+            mov: integer, mult: fpu, rnd: fpu, sigmoid: math, sqrt: math, store: send,
+            tanh: math}
+          2: {add: fpu, bitw: integer, clamp: fpu, cmp: fpu, div: fpu, exp: math,
+            load: send, load_store: send, log: math, mac: systolic, max: fpu, min: fpu,
+            mov: integer, mult: fpu, rnd: fpu, sigmoid: math, sqrt: math, store: send,
+            tanh: math}
+          4: {add: fpu, bitw: integer, clamp: fpu, cmp: fpu, div: fpu, exp: math,
+            load: send, load_store: send, log: math, mac: fpu, max: fpu, min: fpu,
+            mov: integer, mult: fpu, rnd: fpu, sigmoid: math, sqrt: math, store: send,
+            tanh: math}
+          8: {add: fpu, bitw: integer, clamp: fpu, cmp: fpu, div: fpu, exp: math,
+            load: send, load_store: send, log: math, mac: fpu, max: fpu, min: fpu,
+            mov: integer, mult: fpu, rnd: fpu, sigmoid: math, sqrt: math, store: send,
+            tanh: math}
+        inumUnits: 1
+        l1_cache_rd_bpck: 410
+        l1_cache_wr_bpck: 256
+        nEngines: 1
+        name: Execution Engine
+        numEUs: 8
+        register_file_parameters:
+          bytes_per_channel: 4
+          channels: 16
+          read_to_write_ratio: 0.5
+          registers_per_thread: 256
+          write_data_precision: {0.5: 4, 1: 4, 2: 4, 4: 4, 8: 8}
+        slm_rd_bpck: 410
+        slm_wr_bpck: 256
+        systolic_broadcast_ratio: {}
+        threads_per_eu: 4
+        tile:
+        - iz: 1
+          oz: 1
+          space_dims: [1, 1]
+          x: 1
+          y: 1
+        tileNames: [1x1x1x1]
+        tiled_layers: [Conv, InnerProduct, Dense, MatMul, LSTM, GradientDense, GradientConv]
+        tiler_parameters: {enable_padding: true, ideal_tile_util: true, max_k_slicing_factor_global_1x1: 64,
+          max_k_slicing_factor_slm_1x1: 32, max_k_slicing_factor_slm_3x3: 4, max_k_slicing_factor_slm_7x7: 4}
+        type: compute
+        use_slm: false
+    name: GEN
+    tile_types: []
+  dgrdCompression: [1.0]
+  dynamic_batching: 1
+  enable_cache_param_warmup: false
+  enable_fusion: 0
+  enable_ideal_cache_eviction: false
+  enable_l1: false
+  enable_l4: false
+  enable_layer_allocation: 0
+  enable_layer_compression: 0
+  enable_layer_sparsity: 0
+  enable_lsc: true
+  enable_pipeline: 1
+  enable_pipeline_backward_pass: 1
+  enable_tf32: false
+  enable_tiling: true
+  enable_trimming: 0
+  engine_to_layer_map:
+    absval: *id001
+    activate: *id001
+    activation: *id001
+    adamoptimizer: *id001
+    add: *id001
+    aggregate: *id001
+    and: *id001
+    argmax: *id001
+    batchnorm: *id001
+    batchtospace: *id001
+    beamsearch: *id001
+    bias: *id001
+    broadcast: *id001
+    cast: *id001
+    clamp: *id001
+    concat: *id001
+    constantofshape: *id001
+    conv: *id001
+    convert: *id001
+    convolutionbackpropdata: *id001
+    convtranspose: *id001
+    crop: *id001
+    crossentropyloss: *id001
+    deconv: *id001
+    dense: *id001
+    depthtospace: *id001
+    dequantizelinear: *id001
+    detectionoutput: *id001
+    div: *id001
+    dropout: *id001
+    dwconv: *id001
+    eltwise: *id001
+    elu: *id001
+    embed: *id001
+    embed_dlrm: *id001
+    embedding: *id001
+    embeddingbag: *id001
+    equal: *id001
+    erf: *id001
+    exp: *id001
+    expand: *id001
+    fakequantize: *id001
+    flatten: *id001
+    gather: *id001
+    gatherfromtensor: *id001
+    gelu: *id001
+    gradient: *id001
+    gradientbias: *id001
+    gradientconv: *id001
+    gradientdeconv: *id001
+    gradientdense: *id001
+    gradientembed: *id001
+    gradientembeddingbag: *id001
+    gradientinnerproduct: *id001
+    gradientmatmul: *id001
+    gradientscale: *id001
+    greater: *id001
+    groupconv: *id001
+    hardswish: *id001
+    identity: *id001
+    im2col: *id001
+    innerproduct: *id001
+    instancenormalization: *id001
+    interp: *id001
+    interpicv: *id001
+    interpolate: *id001
+    l2norm: *id001
+    layer: *id001
+    layernorm: *id001
+    leakyrelu: *id001
+    less: *id001
+    log: *id001
+    loss: *id001
+    lrn: *id001
+    lstm: *id001
+    matmul: *id001
+    max: *id001
+    min: *id001
+    mul: *id001
+    mvnorm: *id001
+    nms: *id001
+    nonmaxsuppression: *id001
+    onehot: *id001
+    optimizer: *id001
+    pad: *id001
+    parametricrelu: *id001
+    permute: *id001
+    pixelshuffler: *id001
+    pool: *id001
+    pooloverlap: *id001
+    power: *id001
+    priorbox: *id001
+    priorboxclustered: *id001
+    proposal: *id001
+    qlinearconv: *id001
+    quantizelinear: *id001
+    reducemean: *id001
+    reduction: *id001
+    relu: *id001
+    relu6: *id001
+    reorg: *id001
+    reshape: *id001
+    resize: *id001
+    reversesequence: *id001
+    roialign: *id001
+    roipooling: *id001
+    scale: *id001
+    select: *id001
+    selectindices: *id001
+    separableconv: *id001
+    sgdoptimizer: *id001
+    shapeof: *id001
+    sigmoid: *id001
+    silence: *id001
+    singleoutputslice: *id001
+    slicing: *id001
+    softmax: *id001
+    spacetobatch: *id001
+    spacetodepth: *id001
+    splitting: *id001
+    spp: *id001
+    sqrt: *id001
+    squeeze: *id001
+    stridedslice: *id001
+    swish: *id001
+    tanh: *id001
+    threshold: *id001
+    tile: *id001
+    topk: *id001
+    transpose: *id001
+    triangularindices: *id001
+    unsqueeze: *id001
+    upsample: *id001
+    upsampleinterp: *id001
+    yoloregion: *id001
+    zeropad: *id001
+  force_tensor_write_out: false
+  fuse_layer_list: []
+  global_precision: 1
+  ip_rd_width: [1024]
+  ip_wr_width: [1024]
+  l3_bw_perbank: 64
+  l3_cache_rd_bpck_pdss: 55.46666666666667
+  l3_cache_wr_bpck_pdss: 41.6
+  l3_fabric_eff: 0.85
+  l4_bw_gbps: 0
+  l4_bw_util: 0
+  layerBatches: 16
+  layer_ramp_cycles: 5000
+  maxBatch: 1
+  maxBatches: *id002
+  mem_bw_reduction: 0
+  name: PVC1T-512-C0-85-80
+  numUnits: [64]
+  num_l3_banks: 64
+  outFilePath: test/outdump/AGGR/PVC1T-512-C0-85-80_TransformerLanguageModel_1T_zinf_053_training_f1400
+  param_sparsity: [1]
+  perLayerCSV: 0
+  pl_layer_list:
+  - [conv, batchnorm]
+  - [conv, scale]
+  - [conv, relu]
+  - [eltwise, relu]
+  - [innerproduct, softmax]
+  - [embed, reshape]
+  - [dense, add]
+  - [dense, reshape]
+  - [dense, transpose]
+  - [matmul, transpose]
+  - [matmul, reshape]
+  - [dense, gelu]
+  - [dense, bias]
+  - [dense, tanh]
+  - [dense, relu]
+  - [dense, sigmoid]
+  - [embed, reduction]
+  - [embed, gatherfromtensor]
+  - [embed, concat]
+  - [matmul, triangularindices]
+  - [matmul, select]
+  - [matmul, concat]
+  - [embed_dlrm, concat]
+  - [embeddingbag, gatherfromtensor]
+  pl_level: workload
+  run_args:
+    args:
+      allocation_file: null
+      compression_file: null
+      config_file: test/outdump/AGGR/configs/GEN_PVC1T-512-C0-85-80.yaml
+      dump_html: true
+      flush_oversized_output_tensor: true
+      input_bin_file: null
+      input_dims: null
+      input_net_file: /home/sdg3/param/param_zero_inf_rebase/dl-modeling/ab-release-automation/smab/../../test/data/1T_transformer_zinf/TransformerLanguageModel_1T.py
+      logfile: null
+      logfilter: []
+      logformat: null
+      loglevel: []
+      no_backup: false
+      no_reports: false
+      output_stats: false
+      override_cfg: ['Device: {  outFilePath: test/outdump/AGGR/PVC1T-512-C0-85-80_TransformerLanguageModel_1T_zinf_053_training_f1400,
+          maxBatch: 1, layerBatches: 16, enable_tiling: True, layer_ramp_cycles: 5000
+          , dPrecision: [2], wPrecision: [2], actCompression: [1.0], dgrdCompression:
+          [1.0], wtCompression: [1.0], param_sparsity: [1], act_sparsity: [1], deviceFreq:
+          [1400] }']
+      override_params: null
+      per_layer_flush: null
+      pipeline_backward_pass: true
+      power_config_file: null
+      refeed: false
+      runs: null
+      sparsity_file: null
+      tf_input_name: null
+      tf_output_name: null
+      threads: 1
+      timefirst: false
+      training: true
+      training_correlation: false
+      trg_bwd_dw_legacy: false
+      trg_endofpass_flush: null
+      trg_imm_embed_update: null
+      trg_imm_wt_update: null
+      trg_loss_function: crossentropy
+      trg_optimizer: adam
+      trg_pipe_layer_inp_save: null
+      trg_resnet_specific: false
+      verbose: false
+      workload_config_file: null
+  source_file: test/outdump/AGGR/configs/GEN_PVC1T-512-C0-85-80.yaml
+  sparsity_block_size: 1x1
+  sparsity_data_layout: KCRS
+  tensorSplitChunkSize: 4096
+  tensor_order: x_major
+  trim_layer_list: [fakequantization, cast]
+  wPrecision: [2]
+  wtCompression: [1.0]
+  wt_compression_algo: mvd_btcmpctr

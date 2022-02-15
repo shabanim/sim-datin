@@ -1,0 +1,47 @@
+/*
+    Table of contents styling.
+    TODO: see this link for an example of styling with collapsible lists: https://bootstrapious.com/p/bootstrap-sidebar
+*/
+
+/* top-level style of the nav element */
+.toc {
+    position: fixed;
+    width: 200px;
+    height: 100vh;
+    color: #fff;
+    background: #6d7fcc;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+/* general link styling */
+.toc a {
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+}
+
+.toc a:hover {
+    background: #008000;
+}
+
+/* adding a symbol on the right side for collapse links */
+.toc a[data-toggle="collapse"]::before {
+    content: '\025BF';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+}
+
+/* sub-menu styling */
+.toc ul, .toc {
+    padding-left: 10px;
+    list-style-type: none;
+}
+
+.toc ul.collapse.in, .toc li, .toc {
+    display: flex;
+    flex-direction: column;
+}

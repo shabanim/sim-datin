@@ -1,0 +1,106 @@
+<pnml>
+  <toolspecific tool="speed"/>
+  <name>
+    <text></text>
+  </name>
+  <net id="1">
+    <place id="2">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>Start</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <type value="start"/>
+      </toolspecific>
+    </place>
+    <place id="3">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>End</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <type value="end"/>
+      </toolspecific>
+    </place>
+    <place id="4">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>b1</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <type value="buffer"/>
+        <buff_size value="1"/>
+      </toolspecific>
+    </place>
+    <transition id="5">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>task1</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <runtime value="2000.0"/>
+        <hw_resource value="Big_Core"/>
+        <memory_map>
+          <mem name="SRAM" read="32000" write="9600"/>
+          <mem name="DDR" read="39900"/>
+        </memory_map>
+      </toolspecific>
+    </transition>
+    <transition id="6">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>task2</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <runtime value="2000.0"/>
+        <hw_resource value="Big_Core"/>
+        <memory_map>
+          <mem name="SRAM" write="22400"/>
+          <mem name="DDR" read="15200"/>
+        </memory_map>
+      </toolspecific>
+    </transition>
+    <arc id="7" source="2" target="5">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="8" source="5" target="4">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="9" source="4" target="6">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="10" source="6" target="3">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+  </net>
+</pnml>

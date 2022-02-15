@@ -1,0 +1,22 @@
+{% load dlmodeling_extras %}
+
+{% if run.config_df|length > 0 %}
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th scope="col">HW Parameter</th>
+            {% for item in run.config_df|dictify %}
+                <th>{{ item|dict_lookup:"HW Parameter" }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Value</th>
+            {% for item in run.config_df|dictify %}
+                <td>{{ item|dict_lookup:"Value" }} </td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+{% endif %}

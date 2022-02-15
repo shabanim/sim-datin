@@ -1,0 +1,272 @@
+#This Gen Config is generated. Please don't edit
+Device:
+
+    name                  : PVC1T-512-Plan
+    base_arch             : GEN
+    deviceFreq            : [1400]
+    numUnits              : [64]
+    tensor_order          : 'x_major'
+    ip_rd_width           : [1024]
+    ip_wr_width           : [1024]
+    ddr_bw                : [1638.4]
+    ddr_derate            : 0.675
+    mem_bw_reduction      : 0
+    l3_cache_rd_bpck_pdss : 64
+    l3_cache_wr_bpck_pdss : 48
+    num_l3_banks          : 64
+    l3_bw_perbank         : 64
+    l3_fabric_eff         : 0.854
+    l4_bw_gbps            : 0
+    l4_bw_util            : 0
+    enable_l4             : False
+    cacheOption           : ['FSPS']
+    cacheRwRatio          : 0.9375
+    tensorSplitChunkSize  : 4
+    enable_tiling         : True
+    enable_lsc            : True
+    layer_ramp_cycles     : 3000
+    cacheParamRatio       : 0.0
+    force_tensor_write_out : False
+    cacheSizes            : [[240]]
+    enable_trimming  : 0
+    trim_layer_list  : [
+        FakeQuantization,
+        Cast
+    ]
+    enable_fusion    : 0
+    fuse_layer_list  : []
+    enable_pipeline  : 1
+    enable_pipeline_backward_pass: 0
+    pl_level         : workload
+    pl_layer_list    : [
+        ["Conv", "BatchNorm"],
+        ["Conv", "Scale"],
+        ["Conv", "Relu"],
+        ["EltWise", "ReLU"],
+        ["InnerProduct", "SoftMax"],
+        ["Embed", "Reshape"],
+        ["Dense", "Add"],
+        ["Dense", "Reshape"],
+        ["Dense", "Transpose"],
+        ["MatMul", "Transpose"],
+        ["MatMul", "Reshape"],
+        ["Dense", "Gelu"],
+        ["Dense", "Bias"],
+        ["Dense", "Tanh"],
+        ["Dense", "Relu"],
+        ["Dense", "Sigmoid"],
+        ["Embed", "Reduction"],
+        ["Embed", "GatherFromTensor"],
+        ["Embed", "Concat"],
+        ["MatMul", "TriangularIndices"],
+        ["MatMul", "Select"],
+        ["MatMul", "Concat"],
+        ["Embed_DLRM", "Concat"],
+        ["EmbeddingBag", "GatherFromTensor"]
+    ]
+    csvEnb            : 1
+    outFilePath       : results/PVC1T-512-Plan
+    deepBenchCSV      : 0
+    perLayerCSV       : 0
+    dynamic_batching  : 1
+    cache_debug       : 1
+    global_precision: 4
+    dPrecision      : [4]
+    wPrecision      : [4]
+    enable_tf32     : True
+    actCompression          : [1.0]
+    dgrdCompression         : [1.0]
+    wtCompression           : [1.0]
+    param_sparsity          : [1]
+    act_sparsity            : [1]
+    compression_loss        : 0
+    compress_at_l3          : False
+    
+    maxBatch     : 64
+    layerBatches : 1
+    
+GenEngine:
+  type      : compute
+  name      : Execution Engine
+  Layers    : [
+    "Layer",
+    "Conv",
+    "Deconv",
+    "DWConv",
+    "Pool",
+    "LRN",
+    "InnerProduct",
+    "Embed",
+    "SPP",
+    "Flatten",
+    "im2col",
+    "Concat",
+    "Reshape",
+    "ReverseSequence",
+    "SpaceToBatch",
+    "BatchToSpace",
+    "Splitting",
+    "Slicing",
+    "Gather",
+    "Transpose",
+    "Crop",
+    "topK",
+    "Broadcast",
+    "Tile",
+    "Reduction",
+    "Permute",
+    "ReOrg",
+    "PriorBox",
+    "Interp",
+    "InterpICV",
+    "Upsample",
+    "BatchNorm",
+    "EltWise",
+    "Scale",
+    "Activate",
+    "Threshold",
+    "Mul",
+    "Activation",
+    "ArgMax",
+    "Bias",
+    "MVNorm",
+    "Add",
+    "L2Norm",
+    "DetectionOutput",
+    "YoloRegion",
+    "Relu",
+    "LeakyRelu",
+    "ParametricRelu",
+    "Tanh",
+    "Sigmoid",
+    "SoftMax",
+    "ELU",
+    "AbsVal",
+    "Embedding",
+    "NMS",
+    "PoolOverlap",
+    "Dropout",
+    "Power",
+    "Exp",
+    "Log",
+    "Unsqueeze",
+    "PixelShuffler",
+    "Dense",
+    "MatMul",
+    "LayerNorm",
+    "Gelu",
+    "Identity",
+    "ROIAlign",
+    "GatherFromTensor",
+    "ROIPooling",
+    "LSTM",
+    "ZeroPad",
+    "BeamSearch",
+    "Loss",
+    "CrossEntropyLoss",
+    "Optimizer",
+    "SGDOptimizer",
+    "AdamOptimizer",
+    "Silence",
+    "HardSwish",
+    "Squeeze",
+    "PriorBoxClustered",
+    "StridedSlice",
+    "NonMaxSuppression",
+    "Convert",
+    "ShapeOf",
+    "ConvolutionBackpropData",
+    "Clamp",
+    "GroupConv",
+    "ReduceMean",
+    "QLinearConv",
+    "QuantizeLinear",
+    "Dequantizelinear",
+    "Relu6",
+    "UpsampleInterp",
+    "TriangularIndices",
+    "Select",
+    "Interpolate",
+    "Proposal",
+    "FakeQuantize",
+    "Pad",
+    "SpaceToDepth",
+    "OneHot",
+    "DepthToSpace",
+    "Erf",
+    "SeparableConv",
+    "Div",
+    "And",
+    "Equal",
+    "Greater",
+    "Less",
+    "Swish",
+    "Min",
+    "Max",
+    "Embed_DLRM",
+    "Gradient",
+    "GradientConv",
+    "GradientInnerProduct",
+    "GradientEmbed",
+    "GradientScale",
+    "GradientBias",
+    "GradientDense",
+    "GradientMatMul",
+    "GradientDeconv",
+    "SingleOutputSlice",
+    "ConstantOfShape",
+    "Sqrt",
+    "Resize",
+    "Expand",
+    "ConvTranspose",
+    "Cast",
+    "InstanceNormalization",
+    "EmbeddingBag",
+    "GradientEmbeddingBag",
+    "Aggregate",
+    "SelectIndices"
+    ]
+  tile      : [[1,1,1,1]]
+  numEUs    : 8
+  inumUnits : 1
+  l1_cache_rd_bpck : 512
+  l1_cache_wr_bpck : 256
+  slm_rd_bpck      : 512
+  slm_wr_bpck      : 256
+  use_slm          : False
+  threads_per_eu   : 4
+  systolic_broadcast_ratio : {}
+  tiler_parameters: {
+      ideal_tile_util: TRUE,
+      max_k_slicing_factor_slm_1x1: 32,
+      max_k_slicing_factor_slm_3x3: 4,
+      max_k_slicing_factor_slm_7x7: 4,
+      max_k_slicing_factor_global_1x1: 64,
+      enable_padding: TRUE
+  }
+  register_file_parameters: {
+      registers_per_thread: 256,
+      channels: 16,
+      bytes_per_channel: 4,
+      read_to_write_ratio: 0.5,
+      write_data_precision: {0.5: 4, 1: 4, 2: 4, 4: 4, 8: 8}
+  }
+  compute:
+    pipelines: {
+      systolic       : {0.5: 2 * 8 * 8, 1: 2 * 8 * 4,  2: 2 * 8 * 2,  4: 2 * 8 * 1.0,   8: 2 * 4 * 2.0},
+      fpu            : {0.5: 2 * 8 * 4, 1: 2 * 8 * 4,  2: 2 * 8 * 2,  4: 2 * 8 * 1.0,   8: 2 * 4 * 2.0},
+      integer        : {0.5: 2 * 8 * 4, 1: 2 * 8 * 4,  2: 2 * 8 * 2,  4: 2 * 8,   8: 2 * 4},
+      send           : {0.5: 2 * 8 * 4, 1: 2 * 8 * 4,  2: 2 * 8 * 2,  4: 2 * 8,   8: 2 * 4},
+      math           : {0.5: 2 * 2,     1: 2 * 2,      2: 2 * 2,      4: 2 * 2,   8: 2 * 1}
+    }
+
+    pipeline_map: {
+      fpu:        {all: ['mult', 'add', 'div', 'cmp', 'rnd', 'min', 'max', 'clamp'], 8: ['mac']},
+      integer:    {all: ['mov', 'bitw']},
+      systolic:   {0.5: ['mac'], 1: ['mac'], 2: ['mac'], 4: ['mac'], },
+      math:       {all: ['sigmoid', 'exp', 'tanh', 'sqrt', 'log']},
+      send:       {all: ['load', 'store', 'load_store']}
+    }
+    
+    systolic_depth : { 0.5: 8, 1: 8,  2: 8, 4: 8, 8: 1 }
+    eff            : 0.6

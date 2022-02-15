@@ -1,0 +1,13 @@
+image: alpine:latest
+
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+tests:
+  stage: test
+  script:
+  - python -u -m unittest discover test
+  only:
+  - master
+  - merge_requests

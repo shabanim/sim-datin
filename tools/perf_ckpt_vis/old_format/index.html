@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<h2 style="font-size: 20px; border-radius: 4px; background:#0071c5; padding: 20px; color: #ffff;">Archbench
+		Performance Change over Time</h2>
+	<style>
+		#chartContainer {
+			background-color: powderblue;
+			width: 30%;
+			height: 30%;
+			float: left;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- We will put our React component inside this div. -->
+	<div id="main_container"></div>
+
+	<!-- Load our React component. -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="data.js"></script>
+
+	<script type="text/javascript">
+
+		// Load the Visualization API library and the piechart library.
+		// google.charts.load('current', {packages: ['corechart', 'line']});
+		// google.charts.setOnLoadCallback(drawBasic);
+		   // ... draw the chart...
+	</script>
+
+	<script type="text/babel">
+		google.charts.load('current', { packages: ['corechart', 'line'] });
+		google.charts.setOnLoadCallback(init);
+
+		class Greeting extends React.Component {
+
+			constructor(props) {
+				super(props);
+				// this.drawChart = this.drawChart.bind(this);
+			}
+
+			componentDidMount() {
+
+				this.drawChart("kmb-vpu2.yaml", "resnet50_v1_aaron.xml");
+			}
+
+			componentDidUpdate() {
+				this.drawChart("kmb-vpu2.yaml", "resnet50_v1_aaron.xml");
+			}
+
+
+			drawChart(id = '') {
+				console.log("called")
+
+				var configVal = document.getElementById('config-dropdown').value;
+				var networkVal = document.getElementById('network-dropdown').value;
+				if (id) {
+					if (id === 'config-dropdown') {
+						configVal = document.getElementById('config-dropdown').value;
+					}
+					else if (id === 'network-dropdown') {
+						document.getElementById('network-dropdown').value;
+					}
+				}
+				console.log("configVal => ", configVal, "    networkVal=> ", networkVal)
+
+				var kpisToDisplay = ["FPS", "Activation Cycles", "Cache Cycles", "Comp Cycles", "Total Num Ops (M)", "Perf Cycles"]
+
+				
+
+				for (var i = 1; i <= 6; i++) {
+					(function () {
+
+						var chartData = generateChartData(configVal, networkVal, kpisToDisplay[i - 1]);
+						var data = google.visualization.arrayToDataTable(chartData[0]);
+						var commitIds = chartData[1];
+
+						var options = {
+							hAxis: {
+								title: 'Time'
+							},
+							vAxis: {
+								title: kpisToDisplay[i - 1]
+							}
+						};
+
+						var chart = new google.visualization.LineChart(document.getElementById("chartContainer" + i));
+						chart.draw(data, options);
+
+						google.visualization.events.addListener(chart, 'select', function () {
+							selectHandler(chart, data, commitIds);
+						}, false);
+
+					}());
+				}
+
+			}
+
+
+			render() {
+
+				return (
+					<div style={{ width: '500px', display: 'flex', position: 'absolute', top: '20px', right: '20px' }}>
+						<div className="config-block">
+							<label htmlFor="config" style={{ color: '#ffff' }}>Select Config</label>
+							<select id="config-dropdown" style={{ padding: '5px', borderRadius: '4px' }} onChange={this.drawChart.bind(this, "config-dropdown")}>
+								{
+									configs.map((val, i) => {
+										return <option key={i} value={val}>{val}</option>
+									})
+								}
+							</select>
+						</div>
+						<div className="network-block">
+							<label htmlFor="network" style={{ color: '#ffff' }}>Select Network</label>
+							<select id="network-dropdown" style={{ padding: '5px', borderRadius: '4px' }} onChange={this.drawChart.bind(this, "network-dropdown")}>
+								{
+									networks.map((val, i) => {
+										return <option key={i} value={val}>{val}</option>
+									})
+								}
+							</select>
+						</div>
+					</div>
+
+				);
+			}
+		}
+
+		function selectHandler(chart, data, commitIds) {
+					console.log(chart.getSelection());
+					var selectedData = chart.getSelection();
+					// Checking if data is unselected
+					if(selectedData.length > 0 ) {
+						var ts = data.getValue(selectedData[0]['row'], 0)
+						console.log(ts);
+						console.log(commitIds[ts]);
+						var cid = commitIds[ts];
+						if(cid != 'master') {
+							window.open("https://gitlab.devtools.intel.com/iotgai/archbench/-/commit/" + commitIds[ts]);
+						} else {
+							window.open("https://gitlab.devtools.intel.com/iotgai/archbench/-/commits/master");
+						}
+				}
+			};
+
+		function init() {
+			ReactDOM.render(
+				<Greeting />,
+				document.getElementById('main_container')
+			);
+		}
+
+
+	</script>
+	<script>
+		function fetchFromSummaryData(idx, param, config, network) {
+
+			for (doc of summaryData[idx]['params_affected']) {
+				if (network == doc['network'] && config == doc['config']) {
+					for (changeMeta of doc['params_affected']) {
+						if (param == changeMeta['param']) {
+							var val = {
+								currentVal: changeMeta['new_value'],
+								oldVal: changeMeta['old_value']
+							};
+							return val;
+						}
+					}
+				}
+			}
+
+			return null;
+		}
+
+		function generateChartData(config, network, kpi) {
+			n = summaryData.length;
+			var currTs = new Date().toLocaleDateString() + " "
+				+ new Date().toLocaleTimeString()
+			var data = []
+			var commitIds = {};
+
+			commitIds[currTs] = 'master';
+			firstEntry = []
+			var firstValue = null;
+			for (var i = summaryData.length - 1; i >= 0; i--) {
+				var val = fetchFromSummaryData(i, kpi, config, network);
+				commitIds[summaryData[i]["timestamp"]] = summaryData[i]["commit_id"];
+
+				if (val != null) {
+					data.unshift([summaryData[i]["timestamp"], val.currentVal]);
+					firstValue = val.oldVal
+				}
+
+			}
+			if (firstValue == null){
+				data.unshift([summaryData[0]["timestamp"], latestResults[config][network][kpi]]);
+			} else {
+				data.unshift([summaryData[0]["timestamp"], firstValue]);
+			}
+				
+			data.unshift(["Timestamp", kpi]);
+			data.push([currTs, latestResults[config][network][kpi]]);
+			return [data, commitIds];
+		}
+
+		// VVIP: Do not delete the below code. Can rollback to this.
+		// It averages the data across all commits.
+		// Assume data is present in latestResults
+		// function generateChartData(config, network, kpi) {
+		// 	n = summaryData.length;
+		// 	var currTs = new Date().toLocaleDateString() + " "
+		// 		+ new Date().toLocaleTimeString()
+		// 	var data = new Array(n + 2);
+		// 	var commitIds = {};
+
+		// 	data[0] = ["Timestamp", kpi];
+		// 	data[n + 1] = [currTs, latestResults[config][network][kpi]];
+
+		// 	commitIds[currTs] = 'something';
+
+		// 	for (var i = n; i > 0; i--) {
+		// 		var val = fetchFromSummaryData(i - 1, kpi, config, network);
+		// 		commitIds[summaryData[i - 1]["timestamp"]] = summaryData[i - 1]["commit_id"];
+
+		// 		if (val == null) {
+		// 			data[i] = [summaryData[i - 1]["timestamp"], data[i + 1][1]];
+		// 		} else {
+		// 			data[i] = [summaryData[i - 1]["timestamp"], val.currentVal];
+		// 			data[i - 1] = [summaryData[i - 2]["timestamp"], val.oldVal];
+		// 			i--; // skip next i
+		// 		}
+
+		// 	}
+		// 	return [data, commitIds];
+		// }
+
+		
+	</script>
+
+	<div>
+		<div id="chartContainer1" style="height: 300px; width: 30%; margin: 12px 20px 20px 20px; float: left;"></div>
+		<div id="chartContainer2" style="height: 300px; width: 30%; margin: 12px 20px 20px 20px; float: left;"></div>
+		<div id="chartContainer3" style="height: 300px; width: 30%; margin: 12px 20px 20px 20px; float: left;"></div>
+		<div id="chartContainer4" style="height: 300px; width: 30%; margin: 12px 20px 20px 20px; float: left;"></div>
+		<div id="chartContainer5" style="height: 300px; width: 30%; margin: 12px 20px 20px 20px; float: left;"></div>
+		<div id="chartContainer6" style="height: 300px; width: 30%; margin: 12px 20px 20px 20px; float: left;"></div>
+	</div>
+</body>
+
+</html>

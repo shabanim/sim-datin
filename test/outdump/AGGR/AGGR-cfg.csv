@@ -1,0 +1,8 @@
+{
+    "branch": "HEAD",
+    "gitrev": "*acfd1c478",
+    "giturl": "ssh://git@gitlab.devtools.intel.com:29418/iotgai/archbench.git",
+    "databranch": "refs/heads/master",
+    "datarev": "*659417700",
+    "dataurl": "ssh://git@gitlab.devtools.intel.com:29418/ads/dl-modeling.git"
+}

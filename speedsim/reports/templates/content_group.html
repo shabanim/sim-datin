@@ -1,0 +1,17 @@
+{#
+  Renders a group of items
+#}
+{% block content_group %}
+    {% if data.align == 'top' %}
+        {% set align = 'flex-start' %}
+    {% elif data.align == 'bottom' %}
+        {% set align = 'flex-end' %}
+    {% else %}
+        {% set align = 'center' %}
+    {% endif %}
+    <div class="content-group" style="align-items: {{align}}">
+        {% for c in data.content %}
+            {{render(c)}}
+        {% endfor %}
+    </div>
+{% endblock content_group %}

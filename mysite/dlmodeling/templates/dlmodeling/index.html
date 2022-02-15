@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% extends "dlmodeling/base.html" %}
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+
+
+
+{% block page_content %}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+            <button class="btn btn-sm btn-outline-secondary">Share</button>
+            <button class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+        </button>
+    </div>
+</div>
+
+
+{% if latest_summary_runs %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Run date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Workload</th>
+                <th scope="col">Archbench config</th>
+                <th scope="col">Scale-up config</th>
+                <th scope="col">Enable scaleout</th>
+                <th scope="col">Scale-out config</th>
+                <th scope="col">Param report</th>
+                <th scope="col">Overlap report</th>
+                <th scope="col"> </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for run in latest_summary_runs %}
+            <tr>
+                <th scope="row">{{ run.id }}</th>
+                <td>{{ run.run_issue_date }}</td>
+                <td>{{ run.status }}</td>
+                <td>{{ run.workload_graph }}</td>
+                <td>{{ run.archbench_config }}</td>
+                <td>{{ run.param_scaleup_config }}</td>
+                <td>{{ run.enable_scaleout }}</td>
+                <td>{{ run.param_scaleout_config }}</td>
+                <td>{{ run.param_report }}</td>
+                <td>{{ run.overlap_report}}</td>
+                <td>
+                    <p>
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample_{{ run.id }}" role="button"
+                           aria-expanded="false" aria-controls="collapseExample_{{ run.id }}">
+                            Details
+                        </a>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="11">
+                    <div class="collapse" id="collapseExample_{{ run.id }}">
+                        <div class="card card-body">
+                            {% include 'dlmodeling/hw_config.html' %}
+                            {% include 'dlmodeling/run_summary.html' %}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+{% endblock %}
+
+</body>
+</html>

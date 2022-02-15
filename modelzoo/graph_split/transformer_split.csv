@@ -1,0 +1,7 @@
+Name,type,pass,comms_type,pass_2,pick
+encoder_att_out_project,Dense,fwd,allreduce,FWD,NA
+encoder_ffn2_,Dense,fwd,allreduce,FWD,NA
+encode_to_logits,Dense,fwd,allreduce,FWD,NA
+_encoder_ffn1_,Dense,bwd-d,allreduce,INP_GRAD,NA
+_encoder_q_proj,Dense,bwd-d,allreduce,INP_GRAD,NA
+bwd_00000_encoder_token_embedding,Embed,bwd-d,allreduce,INP_GRAD,NA

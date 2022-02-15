@@ -1,0 +1,5 @@
+['Device: {  outFilePath: test/outdump/AGGR/PVC1T-512-C0-85-80_TransformerLanguageModel_1T_zinf_053_training_f1400,
+    maxBatch: 1, layerBatches: 16, enable_tiling: True, layer_ramp_cycles: 5000 ,
+    dPrecision: [2], wPrecision: [2], actCompression: [1.0], dgrdCompression: [1.0],
+    wtCompression: [1.0], param_sparsity: [1], act_sparsity: [1], deviceFreq: [1400]
+    }']

@@ -1,0 +1,152 @@
+# Parameters for comms model
+Collective:
+    scale_up_collectiveAlgo: {
+        nw_topology: "p2p"
+    }
+
+    scale_out_collectiveAlgo: {
+        nw_topology: "flat",
+        collective_algo: "allreduce", # ['allreduce', 'allgather', 'reduce_scatter']
+        collective_method: "rabenseifner"
+    }
+
+Comms:
+    # -----------
+    #Software
+    # -----------
+    software : {
+        lat_us : 7,
+        th_dispatch : 200
+    }
+
+    # -----------
+    # Scaleup
+    # -----------
+    scaleup : {
+        option              : "GLUELESS",    # 'GLUELESS' #'SWITCH'#
+        link_eff            : 0.9,             # scale-up link efficiency
+        cc_msg              : 1,             # number of concurrent messages
+        local_write         : 0,
+        jitter              : 0.3,
+        link_lat_ns         : 2,             # link latency in nano-seconds
+        switch_lat_ns       : 200,           # switch latency in nano-seconds
+        grp_sockets         : 8,             # number of sockets within group
+        packet_resp         : 48,            # packet response
+        msg_header          : 48,
+        packet_size         : 256,
+        tiles_comm_a2a      : 32,            # number of tiles communicating for A2A
+    }
+    
+    #------------
+    # su_BW_per_link_ACHIEVABLE overwrite
+    #------------
+    su_BW_per_link_ACHIEVABLE_overwrite : False
+    su_BW_per_link_ACHIEVABLE_value : 47.7 #in GB/s
+
+
+    # -----------
+    # Scale out
+    # -----------
+    scale_out : {
+        enabled             : True,
+        latency             : 2,
+        host_involvement    : 3,
+        jitter              : 0.3,          # scale out jitter
+        nics                : 8,            # number of nics
+        nic_bw_unidir_gbps  : 400,          # Unidirectional bandwitdth per NIC (gbps)
+        nic_eff             : 0.9,          # NIC efficiency
+        tiers_fat_tree      : 2,            # tiers in Fat tree
+        switches_t1         : 8,            # Number of switches in 1st tier
+        switches_t2         : 4,            # Number of switches in 2nd tier
+        hosts_t1            : 8,            # Number of host in 1st tier
+        ports_switch        : 128,          # Number of ports used in each switch
+        ports_t1            : 128,          # Number of ports used in 1st tier
+        ports_t2            : 64,           # Number of ports used in 2nd tier
+        type: "cafe",                       # scale out type
+        cafe_lat: 2.08,                     # changed from scale_up
+        cafe_links: 16,                     # total number of links available in cafe
+        cafe_link_bw_gbps: 35,              # Cafe link bandwidth gbps
+        pcie_bw_rw_gbps: 64,                # PCIE bandwidth for read and write gbps
+        hw_type: 1,                         # Scaleout hardware typeTodo : change to names [nic_host_connected, nic_direct, xe_switch, nic_xe]
+        data_parallel_with_model_split: 0,
+        switch_lat_us: 2,                    # switch latency in micro seconds
+        overlap_scaleup: False               # overlap scaleout tasks with scaleup
+    }
+
+    # -----------
+    # buffer
+    # -----------
+    use_buffer  : False
+    buffer_size : 31457280
+
+    # -----------
+    # MP/DP/HYBRID
+    # -----------
+    data_parallel   : False
+    hybrid_model    : True
+    model_split     : 32
+    Enable_ZeRO     : False
+    ZeRO_type       : 2 #Todo :change to names [type_1, type_2, type_3]
+    graph_split_csv : "./modelzoo/graph_split/DLRM_split.csv"
+
+    # -----------
+    # Others
+    # -----------
+    chunks         : 10  # number of chunks
+    pipeline      : True # Pipeline enabled
+    outFilePath   : "./modelzoo/"
+    max_overlap   : 1
+
+
+Device:
+
+    # -----------
+    # Caching Spec
+    # -----------
+    L3_read_cache_miss_for_data_from_remote_write : 500
+    L3_read_cache_miss_on_sync_flag               : 400
+    L3_write_cache_hit_on_data                    : 150
+    L3_write_cache_hit_on_sync_flag               : 150
+    L1_hit_per_cache_line                         : 60
+    L3_read_congestion_factor                     : 1
+    L3_write_congestion_factor                    : 1
+
+    # -----------
+    # Memory Spec
+    # -----------
+    g_memory_reads                                : 64
+    peak_read_memBW                               : 1600
+    peak_write_memBW                              : 1600
+    read_memory_efficiency                        : 0.8
+    write_memory_efficiency                       : 0.8
+    g_memory_writes                               : 32
+    memory_read_congestion_factor                 : 1
+    memory_write_congestion_factor                : 1
+    use_full_message_size_in_HBM_latency_calculation : False
+
+    # -----------
+    # MDFI
+    # -----------
+    mdfi_link_latency                           : 45
+    mdfi_BW_per_tile_ACHIEVABLE                 : 540
+    total_mdfi_BW                               : 600
+    use_chunk_size_in_MDFI_latency_calculation  : False
+
+    # -----------
+    # Compute
+    # -----------
+    frequency_in_Ghz        : 1.5
+    dss_or_sms              : 8
+    links                   : 8
+    links_scaleout          : 4
+    serdes_lane             : 4 # Serializer/Deserializer lanes
+    serdes_rate_gbps        : 90
+    cd_latency_ns           : 100
+    batch_size              : 32
+
+    # -----------
+    # GPU
+    # -----------
+    num_tiles_per_pvc   : 2
+    num_pvc             : 16
+    num_PVC_per_host    : 8

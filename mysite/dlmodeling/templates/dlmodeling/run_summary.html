@@ -1,0 +1,22 @@
+{% load dlmodeling_extras %}
+
+{% if run.run_summary_df|length > 0 %}
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th scope="col">Metric</th>
+            {% for item in run.run_summary_df|dictify %}
+                <th>{{ item|dict_lookup:"Metric" }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Value</th>
+            {% for item in run.run_summary_df|dictify %}
+                <td>{{ item|dict_lookup:"Value" }} </td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+{% endif %}

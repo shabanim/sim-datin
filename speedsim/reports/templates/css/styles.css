@@ -1,0 +1,45 @@
+/*
+  Override bootstrap's 100% width
+*/
+.table {
+    width: initial;
+}
+
+/*
+  Content offset for table of contents
+*/
+.content {
+    margin-left: 210px;
+}
+
+/*
+ Content group styling
+*/
+.content-group {
+    display:flex;
+    flex-direction:row;
+}
+
+.content-group >  div {
+   margin: 10px
+}
+
+/* Default table styling */
+.table thead th {
+    text-align: center;
+}
+
+
+/* Plotly SVG styling */
+text.gtitle {
+    alignment-baseline: middle;  /* plotly seems to render titles with assumption of middle style but doesn't explicitly specify this */
+}
+
+/* bokeh styles */
+/* displays "Loading chart..." label while bokeh is still loading content into charts */
+.bk-root:empty::before {
+	content: "Loading chart...";
+	cursor: wait;
+}
+
+/* End */

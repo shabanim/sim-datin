@@ -1,0 +1,6 @@
+Name,type,pass,comms_type,pass_2,pick,msize
+a2a_1_reshape,Reshape,fwd,a2a,FWD,NA,1
+a2a_2_reshape,Reshape,fwd,a2a,FWD,NA,1
+a2a_1_reshape,Reshape,bwd-d,a2a,INP,NA,1
+a2a_2_reshape,Reshape,bwd-d,a2a,INP,NA,1
+Expert_,GradientDense,bwd-w,0,WT_GRAD,NA,1

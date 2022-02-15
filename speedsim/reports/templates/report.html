@@ -1,0 +1,54 @@
+{#
+   Generates rich HTML report with support for JavaScript.
+   Expected context values:
+   data: report.Report object
+#}
+{% extends "document.html" %}
+{% block title %}{{data.title}}{% endblock %}
+{% block head %}
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- NOTE: bootstrap JS depends on jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    {{ render_header() }}
+
+    <!-- style overrides and customization -->
+    <style>
+        {% include "css/styles.css" %}
+        {% include "css/toc.css" %}
+    </style>
+{% endblock head %}
+
+{# Renders a TOC for a Section() specified by "parent" #}
+{% macro section_toc(parent, level=0, id="toc") -%}
+    <ul class="{{'' if level == 0 else 'collapse'}}" id="{{id}}">
+        {% for s in parent.sections %}
+        <li>
+            {% if level < 1 and s.sections|length > 0 %}
+                {% set toc_id = id + '-' + loop.index|string %}
+                <a href="#{{toc_id}}" data-toggle="collapse">{{s.title}}</a>
+                {{section_toc(s, level + 1, toc_id)}}
+            {% else %}
+                <a href="#{{s.tag}}">{{s.title}}</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+{%- endmacro %}
+
+
+{# Main report content #}
+{% block content %}
+    <nav class="toc">
+        <a href="#">Home</a>
+        {{section_toc(data)}}
+    </nav>
+
+    <div class="content">
+      {% for s in data.content %}
+        {{render(s)}}
+      {% endfor %}
+    </div>
+{% endblock content %}

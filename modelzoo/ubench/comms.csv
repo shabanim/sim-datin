@@ -1,0 +1,2 @@
+Msg_size,algo,No_of_GPU,No_of_tile_per_socket,MSG_PASS_Type,layer_ID
+52428800, reducescatter, 8, 2, WT_GRAD,1

@@ -1,0 +1,9 @@
+Name,type,pass,comms_type,pass_2,pick,msize
+Embedding_reduction,Reduction,fwd,a2a,FWD,NA,NA
+bwd_d_00021_concat_before_batchmatmul,Concat,bwd-d,a2a,INP_GRAD,concat_a2a_embedding_grad,NA
+bwd_d_00019_concat_before_batchmatmul,Concat,bwd-d,a2a,INP_GRAD,concat_a2a_embedding_grad,NA
+bwd_d_00020_concat_before_batchmatmul,Concat,bwd-d,a2a,INP_GRAD,concat_a2a_embedding_grad,NA
+bwd_w_00003_nvme_embedding,GradientEmbeddingBag,bwd-w,0,WT_GRAD,NA,NA
+bwd_w_00002_cpu_embedding,GradientEmbeddingBag,bwd-w,0,WT_GRAD,NA,NA
+bwd_w_00001_hbm_embedding,GradientEmbeddingBag,bwd-w,0,WT_GRAD,NA,NA
+bwd_w_00000_cache_embedding,GradientEmbeddingBag,bwd-w,0,WT_GRAD,NA,NA

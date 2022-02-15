@@ -1,0 +1,315 @@
+<pnml>
+  <toolspecific tool="speed"/>
+  <name>
+    <text></text>
+  </name>
+  <net id="1">
+    <place id="2" type="start">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>start</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <iterations type="int" value="1"/>
+        <wait_delay type="int" value="0"/>
+        <start_delay value="0"/>
+      </toolspecific>
+    </place>
+    <place id="3" type="end">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>end</text>
+      </initialMarking>
+      <toolspecific tool="speed"/>
+    </place>
+    <place id="4" type="buffer">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>b</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <buff_size value="1"/>
+      </toolspecific>
+    </place>
+    <place id="5" type="buffer">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>b</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <init_count value="0"/>
+        <buff_size value="1"/>
+      </toolspecific>
+    </place>
+    <place id="6" type="buffer">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>b</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <init_count value="0"/>
+        <buff_size value="1"/>
+      </toolspecific>
+    </place>
+    <place id="7" type="buffer">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>b</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <init_count value="0"/>
+        <buff_size value="1"/>
+      </toolspecific>
+    </place>
+    <place id="8" type="buffer">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>b</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <init_count value="0"/>
+        <buff_size value="1"/>
+      </toolspecific>
+    </place>
+    <place id="9" type="buffer">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>b</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <buff_size value="1"/>
+      </toolspecific>
+    </place>
+    <transition id="10">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>trigger_out_start</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <runtime value="0"/>
+        <memory value="10"/>
+        <read_percentage value="50"/>
+        <name value="trigger_out_start"/>
+      </toolspecific>
+    </transition>
+    <transition id="11">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>task1</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <runtime value="10"/>
+        <memory value="10"/>
+        <hw_resource value="CPU"/>
+        <read_percentage value="50"/>
+        <name value="task1"/>
+      </toolspecific>
+    </transition>
+    <transition id="12">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>task2</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <runtime value="10"/>
+        <memory value="0"/>
+        <hw_resource value="CPU"/>
+        <read_percentage value="50"/>
+        <name value="task2"/>
+      </toolspecific>
+    </transition>
+    <transition id="13">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>task3</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <runtime value="0"/>
+        <memory value="10"/>
+        <hw_resource value="CPU"/>
+        <read_percentage value="50"/>
+        <name value="task3"/>
+      </toolspecific>
+    </transition>
+    <transition id="14">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>task4</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <runtime value="0"/>
+        <memory value="10"/>
+        <hw_resource value="CPU"/>
+        <read_percentage value="100"/>
+        <name value="task4"/>
+      </toolspecific>
+    </transition>
+    <transition id="15">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>task5</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <runtime value="0"/>
+        <memory value="10"/>
+        <hw_resource value="CPU"/>
+        <read_percentage value="0.0"/>
+        <name value="task5"/>
+      </toolspecific>
+    </transition>
+    <transition id="16">
+      <name>
+        <text></text>
+      </name>
+      <initialMarking>
+        <text>trigger_in_end</text>
+      </initialMarking>
+      <toolspecific tool="speed">
+        <runtime value="0"/>
+        <memory value="10"/>
+        <read_percentage value="50"/>
+        <name value="trigger_in_end"/>
+      </toolspecific>
+    </transition>
+    <arc id="17" source="2" target="10">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="18" source="16" target="3">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="19" source="10" target="4">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="20" source="4" target="11">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="21" source="11" target="5">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="22" source="5" target="12">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="23" source="12" target="6">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="24" source="6" target="13">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="25" source="13" target="7">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="26" source="7" target="14">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="27" source="14" target="8">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="28" source="8" target="15">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="29" source="15" target="9">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+    <arc id="30" source="9" target="16">
+      <inscription>
+        <text></text>
+      </inscription>
+      <toolspecific tool="speed">
+        <weight value="1"/>
+      </toolspecific>
+    </arc>
+  </net>
+</pnml>

@@ -1,0 +1,20 @@
+stages:
+    - test
+    - deploy
+
+pages:
+  stage: deploy
+  script:
+  - python -u doc/make.py html 
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+
+
+unittest:
+    stage: test
+    variables:
+        PYTHONPATH: ..
+    script: C:/ProgramData/Anaconda3/python -m unittest discover test

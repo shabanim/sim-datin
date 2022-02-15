@@ -1,0 +1,7 @@
+#Python compiled files and output regression
+.idea
+*.pyc
+__pycache__/
+*.ipynb_checkpoints
+doc/build/
+public/

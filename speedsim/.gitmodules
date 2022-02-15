@@ -1,0 +1,9 @@
+[submodule "pnets"]
+	path = pnets
+	url = ../pnets.git
+[submodule "asap"]
+	path = asap
+	url = ../asap.git
+[submodule "reports"]
+	path = reports
+	url = ../reports.git

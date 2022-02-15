@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<h2 style="font-size: 20px; border-radius: 4px; background:#0071c5; padding: 20px; color: #ffff;">Archbench
+		Performance Change over Time</h2>
+	<style>
+		#chartContainer {
+			background-color: powderblue;
+			width: 30%;
+			height: 30%;
+			float: left;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- We will put our React component inside this div. -->
+	<div id="main_container"></div>
+
+	<!-- Load our React component. -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+	<script type="text/javascript">
+
+	</script>
+
+	<script type="text/babel">
+		google.charts.load('current', { packages: ['corechart', 'line'] });
+		google.charts.setOnLoadCallback(init);
+
+		class Greeting extends React.Component {
+
+			constructor(props) {
+				super(props);
+				this.state = {networks: [], configs: []};
+			}
+
+			componentDidMount() {
+				this.loadInitialData();
+				// this.fetchDataChangeForNwAndCfg(configVal, networkVal)
+				// .then(this.drawChart)
+				// .catch(console.log)
+
+			}
+			
+			loadInitialData() {
+				fetch('http://127.0.0.1:5000/')
+					.then(response => response.json())
+					.then((data) => {
+					this.setState({ 
+						configs: data["data"]["configs"],
+						networks: data["data"]["networks"]})
+					})
+					.catch(this.displayError)
+			}
+
+			fetchDataChangeForNwAndCfg(config, network) {
+				var url = 'http://127.0.0.1:5000/perfdata?config="' + config + '"&network="' + network +'"';
+				console.log("Calling: ", url)
+				return fetch(url)
+					.then(response => {
+						if(response.status == 400) {
+							// console.log(response)
+							return response.text().then(text => {throw new Error(text)})
+						} else if (!response.ok) {
+							throw new Error("HTTP status " + response.status);
+						}
+						console.log(response);
+						return response.json();
+					})
+					.catch(e => {
+						this.displayError(e);
+						return null;
+					});
+					
+			}
+
+			displayError(data) {
+				// alert(data)
+				$("#errorContainer").text(data);
+				console.log(data)
+			}
+
+			getChangeDataForCfgNw(id = '') {
+				var configVal = document.getElementById('config-dropdown').value;
+				var networkVal = document.getElementById('network-dropdown').value;
+
+				if (id) {
+					if (id === 'config-dropdown') {
+						configVal = document.getElementById('config-dropdown').value;
+					}
+					else if (id === 'network-dropdown') {
+						networkVal = document.getElementById('network-dropdown').value;
+					}
+				}
+
+				console.log("configVal => ", configVal, "    networkVal=> ", networkVal);
+				
+				this.fetchDataChangeForNwAndCfg(configVal, networkVal)
+				.then(this.drawChart)
+				.catch(console.log)
+			}
+
+
+			drawChart(data) {
+				if(data === null) {
+					return 
+				}
+				
+				data = data['data']
+
+				if(data.length > 0) { ( 
+					function() {
+						for(var i=0; i < data.length; i++) {
+							var graphData = data[i];
+							var historyData = graphData['history_data'];
+							var batch = graphData['batch'];
+							
+							var commitIds = []
+							var visData = new google.visualization.DataTable();
+							visData.addColumn('string', 'Recorded At');
+							visData.addColumn('number', 'FPS');
+							for (var j=0; j < historyData.length; j++) {
+
+								// It is possible to use Date() and datetime here but it
+								// mixes up the entry if they are recorded at the same time
+								// It may be possible to hack the time and increment it to avoid
+								// the mixup
+								visData.addRow([historyData[j]['ts'], historyData[j]['fps']]);
+								commitIds[j] = historyData[j]['commit_id'];
+							}
+							
+							var options = {
+								title: "Batch " + batch,
+								hAxis: {
+									title: 'Recorded At'
+								},
+								vAxis: {
+									title: "FPS"
+								}
+							};
+							var chart = new google.visualization.LineChart(document.getElementById("chartContainer" + (i+1)));
+							chart.draw(visData, options);
+							google.visualization.events.addListener(chart, 'select', function () {
+								selectHandler(chart, visData, commitIds);
+							}, false);
+						}
+					}());
+				} else {
+					console.log("No results available")
+				}
+			}
+
+
+			render() {
+
+				return (
+					<div style={{ width: '500px', display: 'flex', position: 'absolute', top: '20px', right: '20px' }}>
+						<div className="config-block">
+							<label htmlFor="config" style={{ color: '#ffff' }}>Select Config</label>
+							<select id="config-dropdown" style={{ padding: '5px', borderRadius: '4px' }} onChange={this.getChangeDataForCfgNw.bind(this, "config-dropdown")}>
+								{
+									this.state.configs.map((val, i) => {
+										return <option key={i} value={val}>{val}</option>
+									})
+								}
+							</select>
+						</div>
+						<div className="network-block">
+							<label htmlFor="network" style={{ color: '#ffff' }}>Select Network</label>
+							<select id="network-dropdown" style={{ padding: '5px', borderRadius: '4px' }} onChange={this.getChangeDataForCfgNw.bind(this, "network-dropdown")}>
+								{
+									this.state.networks.map((val, i) => {
+										return <option key={i} value={val}>{val}</option>
+									})
+								}
+							</select>
+						</div>
+					</div>
+
+				);
+			}
+		}
+
+		function selectHandler(chart, data, commitIds) {
+					console.log(chart.getSelection());
+					var selectedData = chart.getSelection();
+					// Checking if data is unselected
+					if(selectedData.length > 0 ) {
+						var idx = selectedData[0]['row']
+						var cid = commitIds[idx];
+						if(cid != 'master') {
+							window.open("https://gitlab.devtools.intel.com/iotgai/archbench/-/commit/" + cid);
+						} else {
+							window.open("https://gitlab.devtools.intel.com/iotgai/archbench/-/commits/master");
+						}
+				}
+			};
+
+		function init() {
+			ReactDOM.render(
+				<Greeting />,
+				document.getElementById('main_container')
+			);
+		}
+
+
+	</script>
+	
+
+	<div>
+		<div id="errorContainer" style="height: 10px; width: 100%; margin: 12px 20px 20px 20px; float: left;"></div>
+		<div id="chartContainer1" style="height: 400px; width: 45%; margin: 12px 20px 20px 20px; float: left;"></div>
+		<div id="chartContainer2" style="height: 400px; width: 45%; margin: 12px 20px 20px 20px; float: left;"></div>
+	</div>
+</body>
+
+</html>

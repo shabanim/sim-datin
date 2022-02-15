@@ -1,0 +1,42 @@
+html, body {
+    margin:0;
+    padding:0;
+    overflow:hidden;
+}
+
+body {
+  font: 300 14px 'Helvetica Neue', Helvetica;
+}
+
+svg {
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+}
+
+.node rect,
+.node circle,
+.node ellipse {
+  stroke: #333;
+  fill: #ff0;
+  stroke-width: 1px;
+}
+
+.edgePath path {
+  stroke: #333;
+  fill: #333;
+  stroke-width: 1.5px;
+}
+
+table {
+  color: #fff;
+  background-color: #0099FF;
+  display: block;
+  width: 100%;
+}
+
+table.contraction {
+  background-color: #0066FF;
+}

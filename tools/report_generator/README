@@ -1,0 +1,5 @@
+To compare two example directories:
+
+python tools/report_generator/compare_abench_runs.py dir -o diff_log --dir1 golden_results/results-test-usecase --dir2 results
+
+The results will be in a newly created directory called cmpdir/index.html

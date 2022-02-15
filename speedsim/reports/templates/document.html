@@ -1,0 +1,14 @@
+<!--
+  Basic template for an HTML report built from named sections.
+  Expects context to have 'content' property with the list of sections.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>

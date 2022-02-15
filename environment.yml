@@ -1,0 +1,33 @@
+channels:
+    - anaconda
+    - conda-forge
+dependencies:
+     - python=3.6
+     - pylint=2.3.1
+     - pygit2=0.28.2
+     - coverage=4.5.3
+     - pytest=5.0.1
+     - yaml=0.1.7
+     - pyyaml=5.1.1
+     - pre_commit=1.18.1
+     - yapf=0.28.0
+     # just downloaded latest versions for these:
+     - matplotlib
+     - pandas
+     - numpy
+     - onnx=1.5.0=py36h7adf49d_1
+     - networkx=2.3
+     - django
+     - psycopg2
+     - bokeh
+     - requests
+     - requests-kerberos
+     - python-graphviz
+     - intervaltree
+     - lxml
+     - reportlab
+     - svglib
+     - tqdm
+     - openpyxl
+  
+     

@@ -1,0 +1,3 @@
+Network,Spatial (M),Conv1x1 (M),ConvNxN (M),ConvNxM (M),ConvOther (M),Activation (M),TensorLayout (M),Pointwise (M),Other (M)
+TransformerLanguageModel_1T.py,0.00,0.00,0.00,0.00,1504158750.61,624917.74,14562.62,5033.16,119957.09
+AVG Over Networks,0.00,0.00,0.00,0.00,1504158750.61,624917.74,14562.62,5033.16,119957.09

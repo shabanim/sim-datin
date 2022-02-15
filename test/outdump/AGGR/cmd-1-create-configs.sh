@@ -1,0 +1,1 @@
+python /home/sdg3/param/param_zero_inf_rebase/dl-modeling/ab-release-automation/create_gen_configs.py -i /home/sdg3/param/param_zero_inf_rebase/dl-modeling/test/data/Gen12-SKUs-PVC.xlsx -o test/outdump/AGGR/configs -f workload -if False

@@ -1,0 +1,2126 @@
+{
+    "Model": {
+        "Name": "TransformerLanguageModel_175B.py"
+    },
+    "System": {
+        "Name": "T1024_MP16_DP64",
+        "MP": 16,
+        "DP": 64,
+        "nCPU": 1024,
+        "nNodes": 64,
+        "nTilesNode": 16
+    },
+    "Layers": [
+        {
+            "Pass": "FWD",
+            "LayerNum": 0,
+            "LayerName": "encoder_token_embedding__FW",
+            "Dependency": null,
+            "FreqGHz": 1.5,
+            "Weights": 38621184.0,
+            "WeightsBytes": 77242368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 1200122.22,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 1,
+            "LayerName": "encoder_token_embedding_out__FW",
+            "Dependency": [
+                "encoder_token_embedding__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 2,
+            "LayerName": "segment_embedding__FW",
+            "Dependency": null,
+            "FreqGHz": 1.5,
+            "Weights": 24576.0,
+            "WeightsBytes": 49152.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 1098977.78,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 3,
+            "LayerName": "positional_add__FW",
+            "Dependency": [
+                "segment_embedding__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 1024.0,
+            "WeightsBytes": 2048.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 1920869.44,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 4,
+            "LayerName": "embedding_add__FW",
+            "Dependency": [
+                "encoder_token_embedding_out__FW",
+                "positional_add__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 3013133.33,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 5,
+            "LayerName": "embedding_layernorm__FW",
+            "Dependency": [
+                "embedding_add__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 1920866.67,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 6,
+            "LayerName": "embedding_dropout__FW",
+            "Dependency": [
+                "embedding_layernorm__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 1920866.67,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 7,
+            "LayerName": "encoder_q_proj0__FW",
+            "Dependency": [
+                "embedding_dropout__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2602219.79,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 8,
+            "LayerName": "encoder_q_reshape0__FW",
+            "Dependency": [
+                "encoder_q_proj0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 9,
+            "LayerName": "encoder_q_trans0__FW",
+            "Dependency": [
+                "encoder_q_reshape0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 10,
+            "LayerName": "encoder_k_proj0__FW",
+            "Dependency": [
+                "embedding_dropout__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2670486.46,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 11,
+            "LayerName": "encoder_k_reshape0__FW",
+            "Dependency": [
+                "encoder_k_proj0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 12,
+            "LayerName": "encoder_k_trans0__FW",
+            "Dependency": [
+                "encoder_k_reshape0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 13,
+            "LayerName": "encoder_v_proj0__FW",
+            "Dependency": [
+                "embedding_dropout__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2670486.46,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 14,
+            "LayerName": "encoder_v_reshape0__FW",
+            "Dependency": [
+                "encoder_v_proj0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 15,
+            "LayerName": "encoder_v_trans0__FW",
+            "Dependency": [
+                "encoder_v_reshape0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 16,
+            "LayerName": "encoder_qk_mul0__FW",
+            "Dependency": [
+                "encoder_q_trans0__FW",
+                "encoder_k_trans0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 818142.09,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 17,
+            "LayerName": "encoder_qk_smax0__FW",
+            "Dependency": [
+                "encoder_qk_mul0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 18,
+            "LayerName": "encoder_qk_dropout0__FW",
+            "Dependency": [
+                "encoder_qk_smax0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 828600.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 19,
+            "LayerName": "encoder_qkv_mul0__FW",
+            "Dependency": [
+                "encoder_v_trans0__FW",
+                "encoder_qk_dropout0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 925989.02,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 20,
+            "LayerName": "encoder_qkv_mul_trans0__FW",
+            "Dependency": [
+                "encoder_qkv_mul0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 71266.67,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 21,
+            "LayerName": "encoder_qkv_mul_reshape0__FW",
+            "Dependency": [
+                "encoder_qkv_mul_trans0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 71266.67,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 22,
+            "LayerName": "encoder_att_out_project0__FW",
+            "Dependency": [
+                "encoder_qkv_mul_reshape0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2369076.92,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 23,
+            "LayerName": "encoder_att_out_project0__COMM_FW",
+            "Dependency": [
+                "encoder_att_out_project0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0,
+            "WeightsBytes": 0,
+            "Input": 25165824.0,
+            "InputBytes": 50331648.0,
+            "Output": 402653184.0,
+            "OutputBytes": 805306368.0,
+            "CommCycles": 4318172.7890625,
+            "MsgSize": 805306368.0,
+            "CommType": "allreduce",
+            "MP": "True",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 24,
+            "LayerName": "encoder_att_out_dropout0__FW",
+            "Dependency": [
+                "encoder_att_out_project0__COMM_FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 1920866.67,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 25,
+            "LayerName": "encoder_att_out_res0__FW",
+            "Dependency": [
+                "embedding_dropout__FW",
+                "encoder_att_out_dropout0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 3013133.33,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 26,
+            "LayerName": "encoder_att_out_layernorm0__FW",
+            "Dependency": [
+                "encoder_att_out_res0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 1920866.67,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 27,
+            "LayerName": "encoder_ffn1_0__FW",
+            "Dependency": [
+                "encoder_att_out_layernorm0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 37748736.0,
+            "WeightsBytes": 75497472.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 9458307.69,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 28,
+            "LayerName": "encoder_relu_0__FW",
+            "Dependency": [
+                "encoder_ffn1_0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 29,
+            "LayerName": "encoder_ffn2_0__FW",
+            "Dependency": [
+                "encoder_relu_0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 37748736.0,
+            "WeightsBytes": 75497472.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 9458307.69,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 30,
+            "LayerName": "encoder_ffn2_0__COMM_FW",
+            "Dependency": [
+                "encoder_ffn2_0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0,
+            "WeightsBytes": 0,
+            "Input": 100663296.0,
+            "InputBytes": 201326592.0,
+            "Output": 402653184.0,
+            "OutputBytes": 805306368.0,
+            "CommCycles": 4318172.7890625,
+            "MsgSize": 805306368.0,
+            "CommType": "allreduce",
+            "MP": "True",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 31,
+            "LayerName": "encoder_ffn2_dropout0__FW",
+            "Dependency": [
+                "encoder_ffn2_0__COMM_FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 1920866.67,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 32,
+            "LayerName": "encoder_ffn2_res0__FW",
+            "Dependency": [
+                "encoder_att_out_layernorm0__FW",
+                "encoder_ffn2_dropout0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 3013133.33,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 33,
+            "LayerName": "encoder_ffn2_layernorm0__FW",
+            "Dependency": [
+                "encoder_ffn2_res0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 1920866.67,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 34,
+            "LayerName": "encode_to_logits__FW",
+            "Dependency": [
+                "encoder_ffn2_layernorm0__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 38621184.0,
+            "WeightsBytes": 77242368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 10814911.11,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "FWD",
+            "LayerNum": 35,
+            "LayerName": "encode_to_logits__COMM_FW",
+            "Dependency": [
+                "encode_to_logits__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0,
+            "WeightsBytes": 0,
+            "Input": 402653184.0,
+            "InputBytes": 805306368.0,
+            "Output": 102989824.0,
+            "OutputBytes": 205979648.0,
+            "CommCycles": 1120343.8604329424,
+            "MsgSize": 205979648.0,
+            "CommType": "allreduce",
+            "MP": "True",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 36,
+            "LayerName": "loss_encode_to_logits__FW",
+            "Dependency": [
+                "encode_to_logits__COMM_FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 295088.89,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 37,
+            "LayerName": "bwd_00032_encode_to_logits__INP",
+            "Dependency": [
+                "loss_encode_to_logits__FW"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 38621184.0,
+            "WeightsBytes": 77242368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 9673769.23,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 38,
+            "LayerName": "bwd_00032_encode_to_logits__WT",
+            "Dependency": [
+                "bwd_00032_encode_to_logits__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 38621184.0,
+            "WeightsBytes": 77242368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 9673769.23,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 39,
+            "LayerName": "bwd_00032_encode_to_logits__COMM_SO_WT",
+            "Dependency": [
+                "bwd_00032_encode_to_logits__WT"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 38621184.0,
+            "WeightsBytes": 77242368.0,
+            "Input": 505643008.0,
+            "InputBytes": 1011286016.0,
+            "Output": 402653184.0,
+            "OutputBytes": 805306368.0,
+            "CommCycles": 9124254.738000002,
+            "MsgSize": 77242368.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 40,
+            "LayerName": "bwd_00031_encoder_ffn2_layernorm0__INP",
+            "Dependency": [
+                "bwd_00032_encode_to_logits__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 3013133.33,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 41,
+            "LayerName": "bwd_00031_encoder_ffn2_layernorm0__WT",
+            "Dependency": [
+                "bwd_00031_encoder_ffn2_layernorm0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 42,
+            "LayerName": "bwd_00030_encoder_ffn2_res0__INP",
+            "Dependency": [
+                "bwd_00031_encoder_ffn2_layernorm0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 3013133.33,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 43,
+            "LayerName": "bwd_00030_encoder_ffn2_res0__WT",
+            "Dependency": [
+                "bwd_00030_encoder_ffn2_res0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 44,
+            "LayerName": "bwd_00029_encoder_ffn2_dropout0__INP",
+            "Dependency": [
+                "bwd_00030_encoder_ffn2_res0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2187533.33,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 45,
+            "LayerName": "bwd_00029_encoder_ffn2_dropout0__WT",
+            "Dependency": [
+                "bwd_00029_encoder_ffn2_dropout0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 46,
+            "LayerName": "bwd_00028_encoder_ffn2_0__INP",
+            "Dependency": [
+                "bwd_00029_encoder_ffn2_dropout0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 37748736.0,
+            "WeightsBytes": 75497472.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 9455307.69,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 47,
+            "LayerName": "bwd_00028_encoder_ffn2_0__WT",
+            "Dependency": [
+                "bwd_00028_encoder_ffn2_0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 37748736.0,
+            "WeightsBytes": 75497472.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 9455307.69,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 48,
+            "LayerName": "bwd_00028_encoder_ffn2_0__COMM_SO_WT",
+            "Dependency": [
+                "bwd_00028_encoder_ffn2_0__WT"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 37748736.0,
+            "WeightsBytes": 75497472.0,
+            "Input": 503316480.0,
+            "InputBytes": 1006632960.0,
+            "Output": 100663296.0,
+            "OutputBytes": 201326592.0,
+            "CommCycles": 8918138.898,
+            "MsgSize": 75497472.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 49,
+            "LayerName": "bwd_00027_encoder_relu_0__INP",
+            "Dependency": [
+                "bwd_00028_encoder_ffn2_0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 50,
+            "LayerName": "bwd_00027_encoder_relu_0__WT",
+            "Dependency": [
+                "bwd_00027_encoder_relu_0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 51,
+            "LayerName": "bwd_00026_encoder_ffn1_0__INP",
+            "Dependency": [
+                "bwd_00027_encoder_relu_0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 37748736.0,
+            "WeightsBytes": 75497472.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 9455307.69,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 52,
+            "LayerName": "bwd_00026_encoder_ffn1_0__WT",
+            "Dependency": [
+                "bwd_00026_encoder_ffn1_0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 37748736.0,
+            "WeightsBytes": 75497472.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 9455307.69,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 53,
+            "LayerName": "bwd_00026_encoder_ffn1_0__COMM_INP",
+            "Dependency": [
+                "bwd_00026_encoder_ffn1_0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0,
+            "WeightsBytes": 0,
+            "Input": 100663296.0,
+            "InputBytes": 201326592.0,
+            "Output": 402653184.0,
+            "OutputBytes": 805306368.0,
+            "CommCycles": 4318172.7890625,
+            "MsgSize": 805306368.0,
+            "CommType": "allreduce",
+            "MP": "True",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 54,
+            "LayerName": "bwd_00026_encoder_ffn1_0__COMM_SO_WT",
+            "Dependency": [
+                "bwd_00026_encoder_ffn1_0__WT"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 37748736.0,
+            "WeightsBytes": 75497472.0,
+            "Input": 100663296.0,
+            "InputBytes": 201326592.0,
+            "Output": 402653184.0,
+            "OutputBytes": 805306368.0,
+            "CommCycles": 8918138.898,
+            "MsgSize": 75497472.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 55,
+            "LayerName": "@addjoin_bwd_00025_encoder_att_out_layernorm0-encoder_att_out_layernorm0_grad__INP",
+            "Dependency": [
+                "bwd_00030_encoder_ffn2_res0__INP",
+                "bwd_00026_encoder_ffn1_0__COMM_INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 56,
+            "LayerName": "@addjoin_bwd_00025_encoder_att_out_layernorm0-encoder_att_out_layernorm0_grad__WT",
+            "Dependency": [
+                "@addjoin_bwd_00025_encoder_att_out_layernorm0-encoder_att_out_layernorm0_grad__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 57,
+            "LayerName": "bwd_00025_encoder_att_out_layernorm0__INP",
+            "Dependency": [
+                "@addjoin_bwd_00025_encoder_att_out_layernorm0-encoder_att_out_layernorm0_grad__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 3013133.33,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 58,
+            "LayerName": "bwd_00025_encoder_att_out_layernorm0__WT",
+            "Dependency": [
+                "bwd_00025_encoder_att_out_layernorm0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 59,
+            "LayerName": "bwd_00024_encoder_att_out_res0__INP",
+            "Dependency": [
+                "bwd_00025_encoder_att_out_layernorm0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 3013133.33,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 60,
+            "LayerName": "bwd_00024_encoder_att_out_res0__WT",
+            "Dependency": [
+                "bwd_00024_encoder_att_out_res0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 61,
+            "LayerName": "bwd_00023_encoder_att_out_dropout0__INP",
+            "Dependency": [
+                "bwd_00024_encoder_att_out_res0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2187533.33,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 62,
+            "LayerName": "bwd_00023_encoder_att_out_dropout0__WT",
+            "Dependency": [
+                "bwd_00023_encoder_att_out_dropout0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 63,
+            "LayerName": "bwd_00022_encoder_att_out_project0__INP",
+            "Dependency": [
+                "bwd_00023_encoder_att_out_dropout0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2366053.485,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 64,
+            "LayerName": "bwd_00022_encoder_att_out_project0__WT",
+            "Dependency": [
+                "bwd_00022_encoder_att_out_project0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2366053.485,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 65,
+            "LayerName": "bwd_00022_encoder_att_out_project0__COMM_SO_WT",
+            "Dependency": [
+                "bwd_00022_encoder_att_out_project0__WT"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 427819008.0,
+            "InputBytes": 855638016.0,
+            "Output": 25165824.0,
+            "OutputBytes": 50331648.0,
+            "CommCycles": 2229534.738,
+            "MsgSize": 18874368.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 66,
+            "LayerName": "bwd_00021_encoder_qkv_mul_reshape0__INP",
+            "Dependency": [
+                "bwd_00022_encoder_att_out_project0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 71266.67,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 67,
+            "LayerName": "bwd_00021_encoder_qkv_mul_reshape0__WT",
+            "Dependency": [
+                "bwd_00021_encoder_qkv_mul_reshape0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 68,
+            "LayerName": "bwd_00020_encoder_qkv_mul_trans0__INP",
+            "Dependency": [
+                "bwd_00021_encoder_qkv_mul_reshape0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 71266.67,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 69,
+            "LayerName": "bwd_00020_encoder_qkv_mul_trans0__WT",
+            "Dependency": [
+                "bwd_00020_encoder_qkv_mul_trans0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 70,
+            "LayerName": "bwd_00019_encoder_qkv_mul0__INP",
+            "Dependency": [
+                "bwd_00020_encoder_qkv_mul_trans0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 3700932.54,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 71,
+            "LayerName": "bwd_00019_encoder_qkv_mul0__WT",
+            "Dependency": [
+                "bwd_00019_encoder_qkv_mul0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 72,
+            "LayerName": "bwd_00018_encoder_qk_dropout0__INP",
+            "Dependency": [
+                "bwd_00019_encoder_qkv_mul0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 896866.67,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 73,
+            "LayerName": "bwd_00018_encoder_qk_dropout0__WT",
+            "Dependency": [
+                "bwd_00018_encoder_qk_dropout0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 74,
+            "LayerName": "bwd_00017_encoder_qk_smax0__INP",
+            "Dependency": [
+                "bwd_00018_encoder_qk_dropout0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 75,
+            "LayerName": "bwd_00017_encoder_qk_smax0__WT",
+            "Dependency": [
+                "bwd_00017_encoder_qk_smax0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 76,
+            "LayerName": "bwd_00016_encoder_qk_mul0__INP",
+            "Dependency": [
+                "bwd_00017_encoder_qk_smax0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 558486.46,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 77,
+            "LayerName": "bwd_00016_encoder_qk_mul0__WT",
+            "Dependency": [
+                "bwd_00016_encoder_qk_mul0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 78,
+            "LayerName": "bwd_00015_encoder_v_trans0__INP",
+            "Dependency": [
+                "bwd_00019_encoder_qkv_mul0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 79,
+            "LayerName": "bwd_00015_encoder_v_trans0__WT",
+            "Dependency": [
+                "bwd_00015_encoder_v_trans0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 80,
+            "LayerName": "bwd_00014_encoder_v_reshape0__INP",
+            "Dependency": [
+                "bwd_00015_encoder_v_trans0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 81,
+            "LayerName": "bwd_00014_encoder_v_reshape0__WT",
+            "Dependency": [
+                "bwd_00014_encoder_v_reshape0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 82,
+            "LayerName": "bwd_00013_encoder_v_proj0__INP",
+            "Dependency": [
+                "bwd_00014_encoder_v_reshape0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2366076.925,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 83,
+            "LayerName": "bwd_00013_encoder_v_proj0__WT",
+            "Dependency": [
+                "bwd_00013_encoder_v_proj0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2366076.925,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 84,
+            "LayerName": "bwd_00013_encoder_v_proj0__COMM_SO_WT",
+            "Dependency": [
+                "bwd_00013_encoder_v_proj0__WT"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 25165824.0,
+            "InputBytes": 50331648.0,
+            "Output": 402653184.0,
+            "OutputBytes": 805306368.0,
+            "CommCycles": 2229534.738,
+            "MsgSize": 18874368.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 85,
+            "LayerName": "bwd_00012_encoder_k_trans0__INP",
+            "Dependency": [
+                "bwd_00016_encoder_qk_mul0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 86,
+            "LayerName": "bwd_00012_encoder_k_trans0__WT",
+            "Dependency": [
+                "bwd_00012_encoder_k_trans0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 87,
+            "LayerName": "bwd_00011_encoder_k_reshape0__INP",
+            "Dependency": [
+                "bwd_00012_encoder_k_trans0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 88,
+            "LayerName": "bwd_00011_encoder_k_reshape0__WT",
+            "Dependency": [
+                "bwd_00011_encoder_k_reshape0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 89,
+            "LayerName": "bwd_00010_encoder_k_proj0__INP",
+            "Dependency": [
+                "bwd_00011_encoder_k_reshape0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2366076.925,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 90,
+            "LayerName": "bwd_00010_encoder_k_proj0__WT",
+            "Dependency": [
+                "bwd_00010_encoder_k_proj0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2366076.925,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 91,
+            "LayerName": "bwd_00010_encoder_k_proj0__COMM_SO_WT",
+            "Dependency": [
+                "bwd_00010_encoder_k_proj0__WT"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 25165824.0,
+            "InputBytes": 50331648.0,
+            "Output": 402653184.0,
+            "OutputBytes": 805306368.0,
+            "CommCycles": 2229534.738,
+            "MsgSize": 18874368.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 92,
+            "LayerName": "bwd_00009_encoder_q_trans0__INP",
+            "Dependency": [
+                "bwd_00016_encoder_qk_mul0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 93,
+            "LayerName": "bwd_00009_encoder_q_trans0__WT",
+            "Dependency": [
+                "bwd_00009_encoder_q_trans0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 94,
+            "LayerName": "bwd_00008_encoder_q_reshape0__INP",
+            "Dependency": [
+                "bwd_00009_encoder_q_trans0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 95,
+            "LayerName": "bwd_00008_encoder_q_reshape0__WT",
+            "Dependency": [
+                "bwd_00008_encoder_q_reshape0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 96,
+            "LayerName": "bwd_00007_encoder_q_proj0__INP",
+            "Dependency": [
+                "bwd_00008_encoder_q_reshape0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2366076.925,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 97,
+            "LayerName": "bwd_00007_encoder_q_proj0__WT",
+            "Dependency": [
+                "bwd_00007_encoder_q_proj0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 2366076.925,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 98,
+            "LayerName": "bwd_00007_encoder_q_proj0__COMM_INP",
+            "Dependency": [
+                "bwd_00007_encoder_q_proj0__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0,
+            "WeightsBytes": 0,
+            "Input": 25165824.0,
+            "InputBytes": 50331648.0,
+            "Output": 402653184.0,
+            "OutputBytes": 805306368.0,
+            "CommCycles": 4318172.7890625,
+            "MsgSize": 805306368.0,
+            "CommType": "allreduce",
+            "MP": "True",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 99,
+            "LayerName": "bwd_00007_encoder_q_proj0__COMM_SO_WT",
+            "Dependency": [
+                "bwd_00007_encoder_q_proj0__WT"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 9437184.0,
+            "WeightsBytes": 18874368.0,
+            "Input": 25165824.0,
+            "InputBytes": 50331648.0,
+            "Output": 402653184.0,
+            "OutputBytes": 805306368.0,
+            "CommCycles": 2229534.738,
+            "MsgSize": 18874368.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 100,
+            "LayerName": "@addjoin_bwd_00006_embedding_dropout-embedding_layernorm_grad__INP",
+            "Dependency": [
+                "bwd_00024_encoder_att_out_res0__INP",
+                "bwd_00013_encoder_v_proj0__INP",
+                "bwd_00010_encoder_k_proj0__INP",
+                "bwd_00007_encoder_q_proj0__COMM_INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 101,
+            "LayerName": "@addjoin_bwd_00006_embedding_dropout-embedding_layernorm_grad__WT",
+            "Dependency": [
+                "@addjoin_bwd_00006_embedding_dropout-embedding_layernorm_grad__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 102,
+            "LayerName": "bwd_00006_embedding_dropout__INP",
+            "Dependency": [
+                "@addjoin_bwd_00006_embedding_dropout-embedding_layernorm_grad__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 5197666.67,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 103,
+            "LayerName": "bwd_00006_embedding_dropout__WT",
+            "Dependency": [
+                "bwd_00006_embedding_dropout__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 104,
+            "LayerName": "bwd_00005_embedding_layernorm__INP",
+            "Dependency": [
+                "bwd_00006_embedding_dropout__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 3013133.33,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 105,
+            "LayerName": "bwd_00005_embedding_layernorm__WT",
+            "Dependency": [
+                "bwd_00005_embedding_layernorm__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 106,
+            "LayerName": "bwd_00004_embedding_add__INP",
+            "Dependency": [
+                "bwd_00005_embedding_layernorm__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 3013133.33,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 107,
+            "LayerName": "bwd_00004_embedding_add__WT",
+            "Dependency": [
+                "bwd_00004_embedding_add__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 108,
+            "LayerName": "bwd_00003_positional_add__INP",
+            "Dependency": [
+                "bwd_00004_embedding_add__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 1024.0,
+            "WeightsBytes": 2048.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 1093768.055,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 109,
+            "LayerName": "bwd_00003_positional_add__WT",
+            "Dependency": [
+                "bwd_00003_positional_add__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 1024.0,
+            "WeightsBytes": 2048.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 1093768.055,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 110,
+            "LayerName": "bwd_00003_positional_add__COMM_SO_WT",
+            "Dependency": [
+                "bwd_00003_positional_add__WT"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 1024.0,
+            "WeightsBytes": 2048.0,
+            "Input": 402653184.0,
+            "InputBytes": 805306368.0,
+            "Output": 402653184.0,
+            "OutputBytes": 805306368.0,
+            "CommCycles": 241.93800000000002,
+            "MsgSize": 2048.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 111,
+            "LayerName": "bwd_00002_segment_embedding__INP",
+            "Dependency": [
+                "bwd_00003_positional_add__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 24576.0,
+            "WeightsBytes": 49152.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 415261.1099999999,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 112,
+            "LayerName": "bwd_00002_segment_embedding__WT",
+            "Dependency": [
+                "bwd_00002_segment_embedding__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 24576.0,
+            "WeightsBytes": 49152.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 415261.1099999999,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 113,
+            "LayerName": "bwd_00002_segment_embedding__COMM_SO_WT",
+            "Dependency": [
+                "bwd_00002_segment_embedding__WT"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 24576.0,
+            "WeightsBytes": 49152.0,
+            "Input": 402718720.0,
+            "InputBytes": 805437440.0,
+            "Output": 65536.0,
+            "OutputBytes": 131072.0,
+            "CommCycles": 5806.098,
+            "MsgSize": 49152.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 114,
+            "LayerName": "bwd_00001_encoder_token_embedding_out__INP",
+            "Dependency": [
+                "bwd_00004_embedding_add__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 115,
+            "LayerName": "bwd_00001_encoder_token_embedding_out__WT",
+            "Dependency": [
+                "bwd_00001_encoder_token_embedding_out__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 0.0,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 116,
+            "LayerName": "bwd_00000_encoder_token_embedding__INP",
+            "Dependency": [
+                "bwd_00001_encoder_token_embedding_out__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 38621184.0,
+            "WeightsBytes": 77242368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 600061.11,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 117,
+            "LayerName": "bwd_00000_encoder_token_embedding__WT",
+            "Dependency": [
+                "bwd_00000_encoder_token_embedding__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 38621184.0,
+            "WeightsBytes": 77242368.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 600061.11,
+            "OPTYPE": "compute"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 118,
+            "LayerName": "bwd_00000_encoder_token_embedding__COMM_INP",
+            "Dependency": [
+                "bwd_00000_encoder_token_embedding__INP"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0,
+            "WeightsBytes": 0,
+            "Input": 402653184.0,
+            "InputBytes": 805306368.0,
+            "Output": 32768.0,
+            "OutputBytes": 65536.0,
+            "CommCycles": 6627.099161783854,
+            "MsgSize": 65536.0,
+            "CommType": "allreduce",
+            "MP": "True",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 119,
+            "LayerName": "bwd_00000_encoder_token_embedding__COMM_SO_WT",
+            "Dependency": [
+                "bwd_00000_encoder_token_embedding__WT"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 38621184.0,
+            "WeightsBytes": 77242368.0,
+            "Input": 402653184.0,
+            "InputBytes": 805306368.0,
+            "Output": 32768.0,
+            "OutputBytes": 65536.0,
+            "CommCycles": 9124254.738000002,
+            "MsgSize": 77242368.0,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 120,
+            "LayerName": "adam_optimizer__FW",
+            "Dependency": [
+                "bwd_00002_segment_embedding__COMM_SO_WT",
+                "bwd_00000_encoder_token_embedding__COMM_SO_WT"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 7238238.89,
+            "OPTYPE": "compute"
+        }
+    ]
+}

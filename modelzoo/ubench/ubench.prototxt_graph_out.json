@@ -1,0 +1,44 @@
+{
+    "directed": true,
+    "multigraph": true,
+    "graph": {
+        "node": {
+            "shape": "plaintext"
+        },
+        "edge": {
+            "dir": "forward"
+        }
+    },
+    "nodes": [
+        {
+            "label": "conv1",
+            "typedef": "Layer",
+            "data": {
+                "Layer": {
+                    "Layer Name": "conv1",
+                    "Layer Type": "Conv",
+                    "Layer Index": 0,
+                    "l_pass": "fwd",
+                    "wt_grad_msg_size": 52428800.0,
+                    "fwd_pass_msg_size": 0.0,
+                    "inp_grad_msg_size": 0.0,
+                    "fwd_pass_comp_cycles": 0.0,
+                    "inp_grad_comp_cycles": 0.0,
+                    "wt_grad_comp_cycles": 0.0,
+                    "comms_time_fwd_cycles": 0.0,
+                    "comms_time_inp_grad_cycles": 0.0,
+                    "comms_time_wtgrad_cycles": 249739.9325810185,
+                    "comms_scaleout_time_fwd_cycles": 0.0,
+                    "comms_scaleout_time_inp_cycles": 0.0,
+                    "comms_scaleout_time_wt_cycles": 0.0,
+                    "fwd_collective_comms_type": "0",
+                    "inp_collective_comms_type": "0",
+                    "wt_collective_comms_type": "reducescatter",
+                    "Checkpoint_number": "nan"
+                }
+            },
+            "id": 0
+        }
+    ],
+    "links": []
+}

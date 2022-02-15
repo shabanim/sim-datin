@@ -1,0 +1,14 @@
+\.idea
+*.pyc
+*.v12.suo
+*.sconsign.dblite
+*build/
+*dist/
+*release/
+__pycache__
+*.gitlab
+*.vscode
+*.coveragerc
+*.editorconfig
+
+

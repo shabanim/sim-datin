@@ -1,0 +1,11 @@
+image: alpine:latest
+
+pages:
+  stage: deploy
+  script:
+  - doc/make.bat html 
+  artifacts:
+    paths:
+    - public
+  only:
+  - master

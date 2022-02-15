@@ -1,0 +1,130 @@
+{
+    "Model": {
+        "Name": "ResNet-50.prototxt"
+    },
+    "System": {
+        "Name": "T128.0_MP32_DP4.0",
+        "MP": 32,
+        "DP": 4.0,
+        "nCPU": 128.0,
+        "nNodes": 8,
+        "nTilesNode": 16.0
+    },
+    "Layers": [
+        {
+            "Pass": "FWD",
+            "LayerNum": 0,
+            "LayerName": "bwd_00000_conv1__COMM_SO_WT",
+            "Dependency": null,
+            "FreqGHz": 1.5,
+            "Weights": 9472.0,
+            "WeightsBytes": 20971520,
+            "Input": 12845056.0,
+            "InputBytes": 25690112.0,
+            "Output": 2408448.0,
+            "OutputBytes": 4816896.0,
+            "CommCycles": 312735.88842123427,
+            "MsgSize": 20971520,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+		{
+            "Pass": "FWD",
+            "LayerNum": 1,
+            "LayerName": "bwd_00000_conv1__COMM_SO_WT1",
+            "Dependency": [
+				"bwd_00000_conv1__COMM_SO_WT"
+			],
+            "FreqGHz": 1.5,
+            "Weights": 9472.0,
+            "WeightsBytes": 41943040,
+            "Input": 12845056.0,
+            "InputBytes": 25690112.0,
+            "Output": 2408448.0,
+            "OutputBytes": 4816896.0,
+            "CommCycles": 312735.88842123427,
+            "MsgSize": 41943040,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+		{
+            "Pass": "FWD",
+            "LayerNum": 2,
+            "LayerName": "bwd_00000_conv1__COMM_SO_WT2",
+            "Dependency": [
+				"bwd_00000_conv1__COMM_SO_WT1"
+			],
+            "FreqGHz": 1.5,
+            "Weights": 9472.0,
+            "WeightsBytes": 62914560,
+            "Input": 12845056.0,
+            "InputBytes": 25690112.0,
+            "Output": 2408448.0,
+            "OutputBytes": 4816896.0,
+            "CommCycles": 312735.88842123427,
+            "MsgSize": 62914560,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+		{
+            "Pass": "FWD",
+            "LayerNum": 3,
+            "LayerName": "bwd_00000_conv1__COMM_SO_WT3",
+            "Dependency": [
+				"bwd_00000_conv1__COMM_SO_WT2"
+			],
+            "FreqGHz": 1.5,
+            "Weights": 9472.0,
+            "WeightsBytes": 83886080,
+            "Input": 12845056.0,
+            "InputBytes": 25690112.0,
+            "Output": 2408448.0,
+            "OutputBytes": 4816896.0,
+            "CommCycles": 312735.88842123427,
+            "MsgSize": 83886080,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+		{
+            "Pass": "FWD",
+            "LayerNum": 4,
+            "LayerName": "bwd_00000_conv1__COMM_SO_WT4",
+            "Dependency": [
+				"bwd_00000_conv1__COMM_SO_WT3"
+			],
+            "FreqGHz": 1.5,
+            "Weights": 9472.0,
+            "WeightsBytes": 104857600,
+            "Input": 12845056.0,
+            "InputBytes": 25690112.0,
+            "Output": 2408448.0,
+            "OutputBytes": 4816896.0,
+            "CommCycles": 312735.88842123427,
+            "MsgSize": 104857600,
+            "CommType": "allreduce",
+            "MP": "False",
+            "OPTYPE": "comm"
+        },
+        {
+            "Pass": "BWD",
+            "LayerNum": 5,
+            "LayerName": "sgd_optimizer__FW",
+            "Dependency": [
+                "bwd_00000_conv1__COMM_SO_WT4"
+            ],
+            "FreqGHz": 1.5,
+            "Weights": 0.0,
+            "WeightsBytes": 0.0,
+            "Input": 50,
+            "InputBytes": 100,
+            "Output": 50,
+            "OutputBytes": 100,
+            "ComputeCycles": 419405.0300000001,
+            "OPTYPE": "compute"
+        }
+    ]
+}
